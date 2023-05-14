@@ -2,5 +2,7 @@
   "Example": "Example",
   "Translation": "Translation",
   "Language": "English",
-  "Page not found": "Page not found"
+  "Page not found": "Page not found",
+  "An unexpected error occurred": "An unexpected error occurred",
+  "Refresh page": "Refresh page"
 }
