@@ -39,17 +39,15 @@ module.exports = {
         'react/function-component-definition': 'off',
         'no-shadow': 'off',
         'import/extensions': 'off',
-        'import/no-extraneous-dependencies':
-            ['error', {
-                devDependencies: true,
-                optionalDependencies: false,
-                peerDependencies: false,
-            }],
+        'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
-        'i18next/no-literal-string': ['error', {
-            markupOnly: true,
-            ignoreAttribute: ['data-testid'],
-        }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid', 'to'],
+            },
+        ],
         'max-len': ['error', { ignoreComments: true, code: 100 }],
     },
     globals: {
