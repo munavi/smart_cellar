@@ -22,24 +22,6 @@ export default ({ config }: {config: webpack.Configuration}) => {
         return rule;
     });
 
-    // if (config.module?.rules) {
-    //     config.module.rules = config.module?.rules?.map((rule: webpack.RuleSetRule | "...") => {
-    //         if (rule !== "..." && /svg/.test(rule.test as string)) {
-    //             return { ...rule, exclude: /\.svg$/i };
-    //         }
-    //
-    //         return rule;
-    //     });
-    // }
-
-    // config.module.rules = config.module.rules.map((rule: RuleSetRule) => {
-    //     if (rule.test instanceof RegExp && rule.test.toString().includes('svg')) {
-    //         return { ...rule, exclude: /\.svg$/i };
-    //     }
-    //
-    //     return rule;
-    // });
-
     config.module.rules.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
