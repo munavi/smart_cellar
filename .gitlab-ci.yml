@@ -3,8 +3,9 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: alekzonder/puppeteer:latest
+  image: node:17.4.0
   script:
+    - apt-get install chromium-browser
     - echo "Installing dependencies..."
     - npm ci
     - npm run test:ui:ci
