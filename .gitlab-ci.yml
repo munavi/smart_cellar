@@ -3,9 +3,10 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: node:17.4.0
+  image: ubuntu:latest
   script:
     - echo "Installing dependencies..."
+    - apt-get install wget
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - dpkg -i google-chrome-stable_current_amd64.deb && apt-get install -f
     - npm ci
