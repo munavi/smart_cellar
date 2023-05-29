@@ -19,12 +19,27 @@ test_project_unit:
     - npm ci
     - npm run test:unit
 
+test_screenshot:
+  stage: Test
+  image: node:17.4.0
+  script:
+    - echo "Installing dependencies..."
+    - npm ci
+    - npm run test:ui:ci
+
 build_project_prod:
   stage: Build
   image: node:17.4.0
   script:
     - npm ci
     - npm run build:prod
+
+build_storybook:
+  stage: Build
+  image: node:17.4.0
+  script:
+    - npm ci
+    - npm run storybook:build
 
 linting_typescript:
   stage: Lint
