@@ -21,7 +21,7 @@ test_project_unit:
 
 test_screenshot:
   stage: Test
-  image: node:17.4.0
+  image: yukinying/chrome-headless-browser
   script:
     - echo "Installing dependencies..."
     - npm ci
