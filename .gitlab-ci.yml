@@ -9,29 +9,33 @@ prepare_dependencies:
   stage: Prepare
   image: node:17.4.0
   script:
-    - echo "Installing dependencies..."
     - npm ci
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 week
 
 test_project_unit:
   stage: Test
+  image: node:17.4.0
   script:
+    - echo "Installing dependencies..."
+    - npm ci
     - npm run test:unit
 
 build_project_prod:
   stage: Build
+  image: node:17.4.0
   script:
+    - npm ci
     - npm run build:prod
 
 linting_typescript:
   stage: Lint
+  image: node:17.4.0
   script:
+    - npm ci
     - npm run lint:ts
 
 linting_css:
   stage: Lint
+  image: node:17.4.0
   script:
+    - npm ci
     - npm run lint:scss
