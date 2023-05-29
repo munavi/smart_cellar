@@ -3,7 +3,7 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: yukinying/chrome-headless-browser
+  image: yukinying/chrome-headless-browser-stable
   script:
     - echo "Installing dependencies..."
     - npm ci
