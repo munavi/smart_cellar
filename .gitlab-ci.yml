@@ -22,8 +22,6 @@ build_project_prod:
 linting_typescript:
   stage: lint
   image: node:17.4.0
-  dependencies:
-    - build_project_prod
   script:
     - npm install
     - npm run lint:ts
