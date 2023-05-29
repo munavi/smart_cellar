@@ -1,27 +1,37 @@
 stages:
-  - lint
-  - build
-  - test
-  - deploy
+  - Prepare
+  - Lint
+  - Build
+  - Test
+  - Deploy
 
-test_project:
-  stage: test
+prepare_dependencies:
+  stage: Prepare
   image: node:17.4.0
   script:
     - echo "Installing dependencies..."
-    - npm install
-    - npm test
+    - npm ci
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 week
+
+test_project_unit:
+  stage: Test
+  script:
+    - npm run test:unit
 
 build_project_prod:
-  stage: build
-  image: node:17.4.0
+  stage: Build
   script:
-    - npm install
     - npm run build:prod
 
 linting_typescript:
-  stage: lint
-  image: node:17.4.0
+  stage: Lint
   script:
-    - npm install
     - npm run lint:ts
+
+linting_css:
+  stage: Lint
+  script:
+    - npm run lint:scss
