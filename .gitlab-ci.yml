@@ -3,7 +3,7 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: node:17.4.0
+  image: alekzonder/puppeteer:latest
   script:
     - echo "Installing dependencies..."
     - npm ci
