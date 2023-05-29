@@ -5,7 +5,6 @@ test_screenshot_storybook:
   stage: Test
   image: node:17.4.0-bullseye
   script:
-    - apt-get install chromium-browser
     - echo "Installing dependencies..."
     - npm ci
     - npm run test:ui:ci
