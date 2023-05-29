@@ -3,11 +3,8 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: node:17.4.0-bullseye
+  image: yukinying/chrome-headless-browser
   script:
     - echo "Installing dependencies..."
-    - apt-get install libgconf2-4 libnss3-1d libxss1
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - dpkg -i google-chrome-stable_current_amd64.deb
     - npm ci
     - npm run test:ui:ci
