@@ -3,14 +3,12 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: ubuntu:latest
+  image: sitespeedio/node:ubuntu-20.04-nodejs-18.12.0
   script:
     - echo "Installing dependencies..."
     - apt-get update && apt-get -y upgrade
     - apt-get install -y wget
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - apt-get install -y ./google-chrome-stable_current_amd64.deb
-    - apt-get install -y nodejs
-    - apt-get install -y npm
     - npm ci
     - npm run test:ui:ci
