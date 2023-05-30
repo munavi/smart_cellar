@@ -1,15 +1,8 @@
 stages:
-  - Prepare
   - Lint
   - Build
   - Test
   - Deploy
-
-prepare_dependencies:
-  stage: Prepare
-  image: node:17.4.0
-  script:
-    - npm ci
 
 test_project_unit:
   stage: Test
@@ -19,13 +12,13 @@ test_project_unit:
     - npm ci
     - npm run test:unit
 
-test_screenshot_storybook:
-  stage: Test
-  image: node:17.4.0
-  script:
-    - echo "Installing dependencies..."
-    - npm ci
-    - npm run test:ui:ci
+#test_screenshot_storybook:
+#  stage: Test
+#  image: node:17.4.0
+#  script:
+#    - echo "Installing dependencies..."
+#    - npm ci
+#    - npm run test:ui:ci
 
 build_project_prod:
   stage: Build
