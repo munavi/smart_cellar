@@ -3,9 +3,9 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: yukinying/chrome-headless-browser
+  image: node:18.16-bullseye-slim
   services:
-    - node:latest
+    - yukinying/chrome-headless-browser
   script:
     - node -v
     - npm -v
