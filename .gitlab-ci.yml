@@ -3,16 +3,12 @@ stages:
 
 test_screenshot_storybook:
   stage: Test
-  image: ubuntu:latest
+  image: yukinying/chrome-headless-browser
   services:
-    - node:17.4
+    - node:latest
   script:
     - node -v
     - npm -v
     - echo "Installing dependencies..."
-    - apt-get update && apt-get -y upgrade
-    - apt-get install -y wget
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get install -y ./google-chrome-stable_current_amd64.deb
     - npm install
     - npm run test:ui:ci
