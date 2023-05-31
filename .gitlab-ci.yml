@@ -6,7 +6,7 @@ test_screenshot_storybook:
   image: node:18.16-bullseye-slim
   script:
     - apt-get update && apt-get -y upgrade
-    - apt-get install docker
+    - apt-get install docker -y
     - echo "Installing dependencies..."
     - npm install
     - npm run test:ui:ci
