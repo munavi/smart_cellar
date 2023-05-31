@@ -12,5 +12,6 @@ test_screenshot_storybook:
     - apt-get install -y ./google-chrome-stable_current_amd64.deb
     - apt-get install -y nodejs
     - apt-get install -y npm
+    - npm install
     - npm ci
     - npm run test:ui:ci
