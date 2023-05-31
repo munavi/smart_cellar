@@ -6,7 +6,7 @@ test_screenshot_storybook:
   image: ubuntu:latest
   services:
     - node:17.4.0
-    - npm:8.3.1
+    - npm:latest
   script:
     - node -v
     - npm -v
@@ -15,8 +15,5 @@ test_screenshot_storybook:
     - apt-get install -y wget
     - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
     - apt-get install -y ./google-chrome-stable_current_amd64.deb
-    - apt-get install -y nodejs
-    - apt-get install -y npm
     - npm install
-    - npm ci
     - npm run test:ui:ci
