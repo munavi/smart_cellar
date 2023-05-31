@@ -5,7 +5,7 @@ test_screenshot_storybook:
   stage: Test
   image: node:18.16-bullseye-slim
   services:
-    - yukinying/chrome-headless-browser:90.0.4408.0
+    - docker:cli
   script:
     - node -v
     - npm -v
