@@ -7,8 +7,6 @@ test_screenshot_storybook:
   services:
     - node:17.4.0
   script:
-    - node -v
-    - npm -v
     - echo "Installing dependencies..."
     - apt-get update && apt-get -y upgrade
     - apt-get install -y wget
