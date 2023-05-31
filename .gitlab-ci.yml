@@ -4,7 +4,12 @@ stages:
 test_screenshot_storybook:
   stage: Test
   image: ubuntu:latest
+  services:
+    - node:17.4.0
+    - npm:8.3.1
   script:
+    - node -v
+    - npm -v
     - echo "Installing dependencies..."
     - apt-get update && apt-get -y upgrade
     - apt-get install -y wget
