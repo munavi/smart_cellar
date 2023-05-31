@@ -6,7 +6,6 @@ test_screenshot_storybook:
   image: ubuntu:latest
   services:
     - node:17.4.0
-    - npm:latest
   script:
     - node -v
     - npm -v
