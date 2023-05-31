@@ -4,11 +4,9 @@ stages:
 test_screenshot_storybook:
   stage: Test
   image: node:18.16-bullseye-slim
-  services:
-    - docker:cli
   script:
-    - node -v
-    - npm -v
+    - apt-get update && apt-get -y upgrade
+    - apt-get install docker
     - echo "Installing dependencies..."
     - npm install
     - npm run test:ui:ci
