@@ -6,7 +6,7 @@ test_screenshot_storybook:
   image: node:18.16-bullseye-slim
   script:
     - apt-get update && apt-get -y upgrade
-    - apt-get install docker -y
+    - apt-get install docker-ce-cli -y
     - echo "Installing dependencies..."
     - docker -v
     - npm ci
