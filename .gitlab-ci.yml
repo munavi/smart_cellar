@@ -8,6 +8,7 @@ test_screenshot_storybook:
     - apt-get update && apt-get -y upgrade
     - apt-get install docker.io -y
     - echo "Installing dependencies..."
-    - docker -v
+    - service docker start
+    - docker run hello-world
     - npm ci
     - npm run test:ui:ci
