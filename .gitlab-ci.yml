@@ -8,5 +8,5 @@ test_screenshot_storybook:
     - apt-get update && apt-get -y upgrade
     - apt-get install docker -y
     - echo "Installing dependencies..."
-    - npm install
+    - npm ci
     - npm run test:ui:ci
