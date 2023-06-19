@@ -2,6 +2,10 @@ import React, { FC, useMemo, useState } from 'react';
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext }
     from 'app/providers/ThemeProvider/lib/ThemeContext';
 
+interface ThemeProviderProps {
+    initialTheme?: Theme;
+}
+
 const preferedTheme = ():Theme => {
     const theme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
     console.log(theme);
@@ -14,8 +18,13 @@ const preferedTheme = ():Theme => {
     return theme;
 };
 
-const ThemeProvider: FC = ({ children }) => {
-    const [theme, setTheme] = useState<Theme>(preferedTheme);
+const ThemeProvider: FC<ThemeProviderProps> = (props) => {
+    const {
+        initialTheme,
+        children,
+    } = props;
+
+    const [theme, setTheme] = useState<Theme>(initialTheme || preferedTheme);
 
     const defaultProps = useMemo(() => ({
         theme,

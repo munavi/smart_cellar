@@ -1,13 +1,18 @@
 {
-  "About Page": "About Page",
-  "About page": "About page",
+  "About Page": "Informationsseite",
+  "About page": "Informationsseite",
   "An unexpected error occurred": "An unexpected error occurred",
   "Language": "Language",
+  "Login": "Login",
+  "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
+    " Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam": {
+      "": ""
+    }
+  },
   "Main Page": "Main Page",
   "Main page": "Main page",
   "Page not found": "Page not found",
   "Refresh page": "Refresh page",
-  "Short language": "Short language",
   "Toggle": "Toggle",
   "throw error": "throw error"
 }
