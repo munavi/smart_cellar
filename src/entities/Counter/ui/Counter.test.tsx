@@ -1,29 +1,27 @@
-import { screen } from '@testing-library/react';
-import { componentRender } from 'shared/lib/tests/componentRender/componentRender';
-import { userEvent } from '@storybook/testing-library';
+import { screen, waitFor } from '@testing-library/react';
+import { componentRender } from 'shared/lib/tests/componentRender/ComponentRender';
+import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
+import userEvent from '@testing-library/user-event';
 import { Counter } from './Counter';
 
-describe('Counter', () => {
-    test('test render', () => {
-        componentRender(<Counter />, {
-            initialState: { counter: { value: 10 } },
-        });
-        expect(screen.getByTestId('value-title')).toHaveTextContent('10');
+describe('Counter test', () => {
+    const initialState: StateSchema = { counter: { value: 42 } };
+    test('render test', () => {
+        componentRender(<Counter />, { initialState });
+        expect(screen.getByTestId('value-title')).toHaveTextContent('42');
     });
-
-    test('increment', () => {
-        componentRender(<Counter />, {
-            initialState: { counter: { value: 10 } },
-        });
+    test('increment test', async () => {
+        componentRender(<Counter />, { initialState });
         userEvent.click(screen.getByTestId('increment-btn'));
-        expect(screen.getByTestId('value-title')).toHaveTextContent('11');
-    });
-
-    test('decrement', () => {
-        componentRender(<Counter />, {
-            initialState: { counter: { value: 10 } },
+        await waitFor(() => {
+            expect(screen.getByTestId('value-title')).toHaveTextContent('43');
         });
+    });
+    test('decrement test', async () => {
+        componentRender(<Counter />, { initialState });
         userEvent.click(screen.getByTestId('decrement-btn'));
-        expect(screen.getByTestId('value-title')).toHaveTextContent('9');
+        await waitFor(() => {
+            expect(screen.getByTestId('value-title')).toHaveTextContent('41');
+        });
     });
 });
