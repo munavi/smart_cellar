@@ -1,7 +1,7 @@
 import { screen, waitFor } from '@testing-library/react';
-import { componentRender } from 'shared/lib/tests/componentRender/ComponentRender';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import userEvent from '@testing-library/user-event';
+import { componentRender } from 'shared/lib/tests/componentRender/componentRender';
 import { Counter } from './Counter';
 
 describe('Counter test', () => {
