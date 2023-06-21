@@ -10,5 +10,8 @@
   "Short language": "EN",
   "Login": "Login",
   "Input username": "Input username",
-  "Input password": "Input password"
+  "Input password": "Input password",
+  "Authorisation form": "Authorisation form",
+  "You entered an incorrect username or password": "You entered an incorrect username or password",
+  "Logout": "Logout"
 }

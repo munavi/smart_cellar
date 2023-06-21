@@ -2,10 +2,12 @@
   "About Page": "About Page",
   "About page": "About page",
   "An unexpected error occurred": "An unexpected error occurred",
+  "Authorisation form": "Authorisation form",
   "Input password": "Input password",
   "Input username": "Input username",
   "Language": "Language",
   "Login": "Login",
+  "Logout": "Logout",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
     " Aliquid commodi consequatur eligendi impedit incidunt necessitatibus possimus quis saepe sunt totam": {
       "": ""
@@ -16,7 +18,10 @@
   "Page not found": "Page not found",
   "Refresh page": "Refresh page",
   "Toggle": "Toggle",
+  "You entered an incorrect username or password": "You entered an incorrect username or password",
   "decrement": "decrement",
   "increment": "increment",
-  "throw error": "throw error"
+  "throw error": "throw error",
+  "Вы ввели неверный логин или пароль": "Вы ввели неверный логин или пароль",
+  "Форма авторизации": "Форма авторизации"
 }

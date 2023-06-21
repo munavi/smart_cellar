@@ -1,6 +1,5 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
 import { Theme } from 'app/providers/ThemeProvider';
 import { Button, ButtonSize, ButtonTheme } from './Button';
@@ -27,7 +26,7 @@ Clear.args = {
 };
 
 export const ClearInverted = Template.bind({});
-Clear.args = {
+ClearInverted.args = {
     children: 'Text',
     theme: ButtonTheme.CLEAR_INVERTED,
 };
@@ -92,4 +91,11 @@ SquareSizeXl.args = {
     theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
     size: ButtonSize.XL,
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    children: '>',
+    theme: ButtonTheme.OUTLINE,
+    disabled: true,
 };
