@@ -12,6 +12,7 @@ i18n
             escapeValue: false, // not needed for react!!
         },
         resources: { en: { translations: {} } },
+        returnNull: false,
     });
 
 export default i18n;
