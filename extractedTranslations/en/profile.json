@@ -5,8 +5,13 @@
   "Edit": "Edit",
   "Enter link to avatar": "Enter link to avatar",
   "Enter your username": "Enter your username",
+  "First and last names are required": "",
+  "Incorrect age": "",
+  "Incorrect region": "",
+  "No data specified": "",
   "Profile": "Profile",
   "Save": "Save",
+  "Server error when saving": "",
   "Try refreshing the page": "Try refreshing the page",
   "Your age": "Your age",
   "Your firstname": "Your firstname",
@@ -19,3 +24,4 @@
   "Профиль": "Профиль",
   "Серверная ошибка при сохранении": ""
 }
+

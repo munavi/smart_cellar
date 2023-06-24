@@ -39,11 +39,12 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const validateErrors = useSelector(getProfileValidateErrors);
 
     const validateErrorTranslates = {
-        [ValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
-        [ValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
-        [ValidateProfileError.NO_DATA]: t('Данные не указаны'),
-        [ValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
-        [ValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
+        [ValidateProfileError.SERVER_ERROR]: t('Server error when saving'),
+        [ValidateProfileError.INCORRECT_COUNTRY]: t('Incorrect region'),
+        [ValidateProfileError.NO_DATA]: t('No data specified'),
+        [ValidateProfileError.INCORRECT_USER_DATA]:
+            t('First and last names are required'),
+        [ValidateProfileError.INCORRECT_AGE]: t('Incorrect age'),
     };
 
     useEffect(() => {
