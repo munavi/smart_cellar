@@ -11,11 +11,7 @@
   ],
   "plugins": [
     [
-      "i18next-extract",
-      {
-        "outputPath": "public/locales/{{locale}}/{{ns}}.json",
-        "locales": ["en", "de"]
-      }
+      "i18next-extract"
     ]
   ]
 }
