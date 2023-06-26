@@ -46,7 +46,9 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to'],
+                ignoreAttribute: ['data-testid', 'to', 'size',
+                    'color', 'variant', 'direction', 'justifyContent', 'spacing', 'alignItems',
+                    'aria-label'],
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 100 }],
@@ -57,6 +59,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Check effect dependencies
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'eslint-disable-next-line i18next/no-literal-string': 'off',
     },
     globals: {
         __IS_DEV__: true,
