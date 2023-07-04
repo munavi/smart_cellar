@@ -48,7 +48,7 @@ module.exports = {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid', 'to', 'size',
                     'color', 'variant', 'direction', 'justifyContent', 'spacing', 'alignItems',
-                    'aria-label'],
+                    'aria-label', 'adapterLocale'],
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 100 }],

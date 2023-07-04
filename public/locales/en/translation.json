@@ -24,5 +24,8 @@
   "Item": "Item",
   "DELETE": "DELETE",
   "Items": "Items",
-  "Item location": "Item location"
+  "Item location": "Item location",
+  "item": "item",
+  "name": "name",
+  "change a date": "change a date"
 }

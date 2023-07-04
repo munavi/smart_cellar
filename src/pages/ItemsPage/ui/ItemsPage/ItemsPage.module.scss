@@ -1,41 +1,41 @@
 .ItemsPage {
-
-}
-.addBtn{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.listItem{
-  background-color: coral;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-
-  .btnGroup{
-    flex: 0 1 auto;
-    min-width: 0;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    height: 2rem;
-
-  }
-}
-.listItemText{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: var(--bg-color);
 }
 
-.txtFld{
-  font-weight: 800;
-  font-size: 1rem;
-  line-height: 3rem;
-  letter-spacing: 0.00938em;
-  color: #ff0000;
-  box-sizing: border-box;
-  height: 1rem;
+.addBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.listItem {
+    background-color: coral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
 
+    .btnGroup {
+        flex: 0 1 auto;
+        min-width: 0;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        height: 2rem;
+    }
+}
+
+.listItemText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.txtFld {
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 3rem;
+    letter-spacing: 0.0094em;
+    color: #f00;
+    box-sizing: border-box;
+    height: 1rem;
+}
