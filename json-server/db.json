@@ -25,6 +25,80 @@
       "password": "123"
     }
   ],
+  "items": [
+    {
+      "id": "1",
+      "itemName": "Nudeln",
+      "number": 16,
+      "category": "Teigwaren & Getreideprodukte",
+      "storageLocation": "Vorratskammer",
+      "date": "01/12/2026"
+    },
+    {
+      "id": "2",
+      "itemName": "Tomatendose",
+      "number": 22,
+      "category": "Konserven",
+      "storageLocation": "Vorratskammer",
+      "date": "15/06/2025"
+    },
+    {
+      "id": "3",
+      "itemName": "Milch",
+      "number": 1,
+      "category": "Milchprodukte",
+      "storageLocation": "Kühlschrank",
+      "date": "15/06/2023"
+    },
+    {
+      "id": "4",
+      "itemName": "Hackfleisch",
+      "number": 1,
+      "category": "Fleischprodukte",
+      "storageLocation": "Kühlschrank",
+      "date": "25/07/2023"
+    },
+    {
+      "id": "5",
+      "itemName": "Käse Aufschnitt",
+      "number": 3,
+      "category": "Milchprodukte",
+      "storageLocation": "Kühlschrank",
+      "date": "22/08/2023"
+    },
+    {
+      "id": "6",
+      "itemName": "Paprika",
+      "number": 3,
+      "category": "Obst & Gemüse",
+      "storageLocation": "Küche",
+      "date": "07/07/2023"
+    },
+    {
+      "id": "7",
+      "itemName": "Essiggurken",
+      "number": 2,
+      "category": "Konserven",
+      "storageLocation": "Konservenschrank",
+      "date": "31/12/2025"
+    },
+    {
+      "id": "8",
+      "itemName": "Butter",
+      "number": 1,
+      "category": "Milchprodukte",
+      "storageLocation": "Kühlschrank",
+      "date": "15/08/2023"
+    },
+    {
+      "id": "9",
+      "itemName": "Apfel",
+      "number": 5,
+      "category": "Obst & Gemüse",
+      "storageLocation": "Küche",
+      "date": "07/07/2023"
+    }
+  ],
   "profile": {
     "first": "Natalya",
     "lastname": "Murashko",

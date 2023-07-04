@@ -28,6 +28,7 @@ export const Counter = ({ className }: CounterProps) => {
             className={classNames(cls.Counter, {}, [])}
         >
             {/* <h1 data-testid="value-title">{counterValue}</h1> */}
+            {/* <h1 data-testid="value-title">{counterValue}</h1> */}
             {/* <Button */}
             {/*    onClick={increment} */}
             {/*    data-testid="increment-btn" */}
@@ -46,7 +47,7 @@ export const Counter = ({ className }: CounterProps) => {
                 className={cls.btnGroup}
             >
                 <Button onClick={increment}>+</Button>
-                <Button disabled>{counterValue}</Button>
+                <Button data-testid="value-title" disabled>{counterValue}</Button>
                 <Button onClick={decrement}>-</Button>
             </ButtonGroup>
         </div>

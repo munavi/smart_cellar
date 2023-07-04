@@ -10,18 +10,17 @@ describe('Counter', () => {
         expect(screen.getByTestId('value-title')).toHaveTextContent('10');
     });
 });
-//     test('increment test', async () => {
-//         componentRender(<Counter />, { initialState });
-//         userEvent.click(screen.getByTestId('increment-btn'));
-//         await waitFor(() => {
-//             expect(screen.getByTestId('value-title')).toHaveTextContent('43');
-//         });
+// test('increment test', async () => {
+//     componentRender(<Counter />, { initialState });
+//     userEvent.click(screen.getByTestId('increment-btn'));
+//     await waitFor(() => {
+//         expect(screen.getByTestId('value-title')).toHaveTextContent('43');
 //     });
-//     test('decrement test', async () => {
-//         componentRender(<Counter />, { initialState });
-//         userEvent.click(screen.getByTestId('decrement-btn'));
-//         await waitFor(() => {
-//             expect(screen.getByTestId('value-title')).toHaveTextContent('41');
-//         });
+// });
+// test('decrement test', async () => {
+//     componentRender(<Counter />, { initialState });
+//     userEvent.click(screen.getByTestId('decrement-btn'));
+//     await waitFor(() => {
+//         expect(screen.getByTestId('value-title')).toHaveTextContent('41');
 //     });
-//
+// });
