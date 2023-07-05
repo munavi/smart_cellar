@@ -1,7 +1,11 @@
 {
+  "": "",
   "About Page": "About Page",
   "About page": "About page",
   "An error occurred while loading the profile": "An error occurred while loading the profile",
+  "An error occurred while uploading the item details": {
+    "": ""
+  },
   "An unexpected error occurred": "An unexpected error occurred",
   "Authorisation form": "Authorisation form",
   "Cancel": "Cancel",
@@ -19,12 +23,21 @@
   "Input password": "Input password",
   "Input username": "Input username",
   "Item": "Item",
+  "Item Details": "Item Details",
   "Item details": "Item details",
+  "Item has not found": "Item has not found",
   "Item location": "Item location",
   "Item name": "Item name",
   "Items": "Items",
   "Itemspage": "Itemspage",
   "Language": "Language",
+  "Loading": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
   "Login": "Login",
   "Logout": "Logout",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {

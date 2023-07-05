@@ -1,6 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
+import React, { memo } from 'react';
+import { ItemDetails } from 'entities/Item';
+import { useParams } from 'react-router-dom';
 import cls from './ItemDetailsPage.module.scss';
 
 interface ItemDetailsPageProps {
@@ -8,12 +10,22 @@ interface ItemDetailsPageProps {
 
 }
 
-const ItemDetailsPage = ({ className }: ItemDetailsPageProps) => {
-    const { t } = useTranslation();
+const ItemDetailsPage = (props: ItemDetailsPageProps) => {
+    const { className } = props;
+    const { t } = useTranslation('item-details');
+    const { id } = useParams<{id: string}>();
+
+    if (!id) {
+        return (
+            <div className={classNames(cls.ItemDetailsPage, {}, [className])}>
+                {t('Item has not found')}
+            </div>
+        );
+    }
 
     return (
         <div className={classNames(cls.ItemDetailsPage, {}, [className])}>
-            {t('Item details')}
+            <ItemDetails id={id} />
         </div>
     );
 };

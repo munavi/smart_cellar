@@ -10,6 +10,7 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
+import { ItemDetails } from 'entities/Item';
 import cls from './ItemsPage.module.scss';
 
 interface ItemsPageProps {
@@ -38,7 +39,6 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
     return (
         <div className={classNames(cls.ItemsPage, {}, [className])}>
             {t('Itemspage')}
-
             <ListItem className={cls.addBtn}>
                 <ListItemText>{t('Items')}</ListItemText>
                 <Fab color="primary" aria-label="add" size="small" onClick={onShowModal}>

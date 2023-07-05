@@ -1,17 +1,18 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import ItemsPage from './ItemsPage';
+import { Primary } from 'entities/Counter/ui/Counter.stories';
+import { ItemDetails } from './ItemDetails';
 
 export default {
-    title: 'shared/ItemsPage',
-    component: ItemsPage,
+    title: 'entities/ItemDetails',
+    component: ItemDetails,
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-} as ComponentMeta<typeof ItemsPage>;
+} as ComponentMeta<typeof ItemDetails>;
 
-const Template: ComponentStory<typeof ItemsPage> = (args) => <ItemsPage {...args} />;
+const Template: ComponentStory<typeof ItemDetails> = (args) => <ItemDetails {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};
