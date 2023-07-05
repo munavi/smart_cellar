@@ -1,17 +1,14 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import {
-    DynamicModuleLoader, ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { memo, useEffect } from 'react';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import React, { memo, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { TextAlign, Text } from 'shared/ui/Text/Text';
-import {
-    getItemDetailsData,
-    getItemDetailsError,
-    getItemDetailsIsLoading,
-} from '../../model/selectors/itemDetails';
+import { Text, TextAlign } from 'shared/ui/Text/Text';
+import { Button, ListItem, ListItemText } from '@mui/material';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { Counter } from 'entities/Counter';
+import { getItemDetailsData, getItemDetailsError, getItemDetailsIsLoading } from '../../model/selectors/itemDetails';
 import { fetchItemById } from '../../model/services/fetchItemById/fetchItemById';
 import { itemDetailsReducer } from '../../model/slice/itemDetailsSlice';
 import cls from './ItemDetails.module.scss';
@@ -52,7 +49,23 @@ export const ItemDetails = memo((props: ItemDetailsProps) => {
         );
     } else {
         content = (
-            <div>{t('Item Details')}</div>
+            <ListItem className={cls.listItem}>
+                <Button size="small" variant="contained"><EditOutlinedIcon /></Button>
+                <ListItemText className={cls.listItemText}>
+                    {item?.itemName}
+                </ListItemText>
+                <Counter className={cls.listItem} />
+                <ListItemText className={cls.listItemText}>
+                    {item?.storageLocation}
+                </ListItemText>
+                {/* eslint-disable-next-line i18next/no-literal-string */}
+                <ListItemText className={cls.listItemText}>
+                    {item?.date}
+                </ListItemText>
+                <Button size="small" color="error" variant="contained">
+                    {t('DELETE')}
+                </Button>
+            </ListItem>
         );
     }
 
