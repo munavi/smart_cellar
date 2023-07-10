@@ -12,11 +12,12 @@
 }
 
 .listItem {
-    background-color: coral;
+    background-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+    color: var(--inverted-primary-color);
 
     .btnGroup {
         flex: 0 1 auto;
@@ -41,4 +42,9 @@
     color: #f00;
     box-sizing: border-box;
     height: 1rem;
+}
+
+.skeletonItem {
+    height: 3rem;
+    width: 100%;
 }

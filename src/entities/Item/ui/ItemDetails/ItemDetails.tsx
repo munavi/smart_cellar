@@ -7,9 +7,12 @@ import React, { memo, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Text, TextAlign } from 'shared/ui/Text/Text';
-import { Button, ListItem, ListItemText } from '@mui/material';
+import {
+    Button, ListItem, ListItemText,
+} from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Counter } from 'entities/Counter';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import {
     getItemDetailsData, getItemDetailsError, getItemDetailsIsLoading,
 } from '../../model/selectors/itemDetails';
@@ -41,10 +44,14 @@ export const ItemDetails = memo((props: ItemDetailsProps) => {
     let content;
 
     if (isLoading) {
-        content = (
-            <div>{t('Loading...')}</div>
+        return (
+            <div className={classNames('', {}, [className])}>
+                <div className={cls.listItem}>
+                    <Skeleton className={cls.skeletonItem} height={56} width={582} />
+                </div>
+            </div>
         );
-    } else if (error) {
+    } if (error) {
         content = (
             <Text
                 align={TextAlign.CENTER}

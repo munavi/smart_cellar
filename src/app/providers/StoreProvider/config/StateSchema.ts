@@ -10,6 +10,7 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
 import { ItemDetailsSchema } from 'entities/Item';
+import { AddNewItemSchema } from 'features/addNewItem';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -19,6 +20,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     itemDetails?: ItemDetailsSchema;
+    addNewItem?: AddNewItemSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

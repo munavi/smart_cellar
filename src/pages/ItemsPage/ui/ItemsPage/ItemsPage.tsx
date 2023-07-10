@@ -1,16 +1,15 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import {
-    Button, Fab, ListItem, ListItemText, Stack, TextField,
+    Button, ListItem, ListItemText, Stack, TextField,
 } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import AddIcon from '@mui/icons-material/Add';
 import { Counter } from 'entities/Counter';
 import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { ItemDetails } from 'entities/Item';
+import { AddNewItem } from 'features/addNewItem/ui/AddNewItem/AddNewItem';
 import cls from './ItemsPage.module.scss';
 
 interface ItemsPageProps {
@@ -39,12 +38,7 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
     return (
         <div className={classNames(cls.ItemsPage, {}, [className])}>
             {t('Itemspage')}
-            <ListItem className={cls.addBtn}>
-                <ListItemText>{t('Items')}</ListItemText>
-                <Fab color="primary" aria-label="add" size="small" onClick={onShowModal}>
-                    <AddIcon />
-                </Fab>
-            </ListItem>
+            <AddNewItem onShowModal={onShowModal} />
             <Modal
                 isOpen={isModal}
                 onClose={onCloseModal}
