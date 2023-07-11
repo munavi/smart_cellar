@@ -1,9 +1,9 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { AddNewItem } from './AddNewItem';
+import AddNewItem from './AddNewItem';
 
 export default {
-    title: 'shared/AddNewItem',
+    title: 'features/AddNewItem',
     component: AddNewItem,
     argTypes: {
         backgroundColor: { control: 'color' },

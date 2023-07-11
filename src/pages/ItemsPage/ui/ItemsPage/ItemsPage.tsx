@@ -9,7 +9,7 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { AddNewItem } from 'features/addNewItem/ui/AddNewItem/AddNewItem';
+import AddNewItem from 'features/addNewItem/ui/AddNewItem/AddNewItem';
 import cls from './ItemsPage.module.scss';
 
 interface ItemsPageProps {

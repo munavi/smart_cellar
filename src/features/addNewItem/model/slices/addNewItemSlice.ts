@@ -5,8 +5,8 @@ const initialState: AddNewItemSchema = {
     text: '',
 };
 
-export const addCommentFormSlice = createSlice({
-    name: 'addCommentForm',
+export const addNewItemSlice = createSlice({
+    name: 'addNewItem',
     initialState,
     reducers: {
         setText: (state, action: PayloadAction<string>) => {
@@ -30,5 +30,5 @@ export const addCommentFormSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { actions: addCommentFormActions } = addCommentFormSlice;
-export const { reducer: addCommentFormReducer } = addCommentFormSlice;
+export const { actions: addNewItemActions } = addNewItemSlice;
+export const { reducer: addNewItemReducer } = addNewItemSlice;
