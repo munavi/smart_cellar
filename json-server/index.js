@@ -17,7 +17,7 @@ server.use(async (req, res, next) => {
     next();
 });
 
-// Эндпоинт для логина
+// Endpoint fpr login
 server.post('/login', (req, res) => {
     try {
         const { username, password } = req.body;

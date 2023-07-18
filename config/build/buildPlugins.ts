@@ -6,7 +6,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export function buildPlugins({
-    paths, isDev, apiUrl, project,
+    paths, isDev, apiUrl, project, reactAppApiUrl,
 }: BuildOptions):
     webpack.WebpackPluginInstance[] {
     const plugins = [
@@ -22,6 +22,7 @@ export function buildPlugins({
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiUrl),
             __PROJECT__: JSON.stringify(project),
+            __REACT_APP_API_URL__: JSON.stringify(reactAppApiUrl),
         }),
     ];
     if (isDev) {
