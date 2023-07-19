@@ -9,8 +9,8 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import AddNewItem from 'features/addNewItem/ui/AddNewItem/AddNewItem';
 import cls from './ItemsPage.module.scss';
+import { AddNewProduct } from 'features/addNewProduct';
 
 interface ItemsPageProps {
     className?: string,
@@ -38,7 +38,7 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
     return (
         <div className={classNames(cls.ItemsPage, {}, [className])}>
             {t('Itemspage')}
-            <AddNewItem onShowModal={onShowModal} />
+            <AddNewProduct onShowModal={onShowModal} />
             <Modal
                 isOpen={isModal}
                 onClose={onCloseModal}

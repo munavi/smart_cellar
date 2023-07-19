@@ -13,14 +13,14 @@ export const loginByEmail = createAsyncThunk<
     LoginByUsernameProps,
     ThunkConfig<string>
     >(
-        'login/loginByUsername',
+        'login/loginByEmail',
         async (authData, thunkApi) => {
             const { extra, dispatch, rejectWithValue } = thunkApi;
 
             try {
                 const response = await
                 extra.api.post<User>(
-                    `${__REACT_APP_API_URL__}/api/user/login`,
+                    '/api/user/login',
                     authData,
                 );
 
