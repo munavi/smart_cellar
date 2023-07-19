@@ -1,7 +1,11 @@
 {
+  "": "",
   "About Page": "Informationsseite",
   "About page": "Informationsseite",
   "An error occurred while loading the profile": "An error occurred while loading the profile",
+  "An error occurred while uploading the item details": {
+    "": ""
+  },
   "An unexpected error occurred": "An unexpected error occurred",
   "Authorisation form": "Authorisation form",
   "Cancel": "Cancel",
@@ -9,6 +13,7 @@
   "Choose a country": "Choose a country",
   "Choose a currency": "Choose a currency",
   "City": "City",
+  "DELETE": "DELETE",
   "Edit": "Edit",
   "Enter link to avatar": "Enter link to avatar",
   "Enter your username": "Enter your username",
@@ -17,9 +22,22 @@
   "Incorrect region": "Incorrect region",
   "Input password": "Input password",
   "Input username": "Input username",
+  "Item": "Item",
+  "Item Details": "Item Details",
   "Item details": "Item details",
+  "Item has not found": "Item has not found",
+  "Item location": "Item location",
+  "Item name": "Item name",
+  "Items": "Items",
   "Itemspage": "Itemspage",
   "Language": "Language",
+  "Loading": {
+    "": {
+      "": {
+        "": ""
+      }
+    }
+  },
   "Login": "Login",
   "Logout": "Logout",
   "Lorem ipsum dolor sit amet, consectetur adipisicing elit": {
@@ -30,6 +48,7 @@
   "Main Page": "Main Page",
   "Main page": "Main page",
   "No data specified": "No data specified",
+  "OK": "OK",
   "PROFILE PAGE": "PROFILE PAGE",
   "Page not found": "Page not found",
   "Profile": "Profile",
@@ -43,6 +62,7 @@
   "Your age": "Your age",
   "Your firstname": "Your firstname",
   "Your lastname": "Your lastname",
+  "change a date": "change a date",
   "decrement": "decrement",
   "increment": "increment",
   "throw error": "throw error",
