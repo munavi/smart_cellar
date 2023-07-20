@@ -5,12 +5,9 @@ import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 
 const data = {
-    username: 'admin',
-    age: 22,
     country: Country.Ukraine,
     lastname: 'ulbi tv',
     first: 'asd',
-    city: 'asf',
     currency: Currency.USD,
 };
 
@@ -24,7 +21,7 @@ describe('profileSlice.test', () => {
     });
 
     test('test cancel edit', () => {
-        const state: DeepPartial<ProfileSchema> = { data, form: { username: '' } };
+        const state: DeepPartial<ProfileSchema> = { data, form: { firstname: '' } };
 
         expect(profileReducer(
             state as ProfileSchema,
@@ -38,15 +35,15 @@ describe('profileSlice.test', () => {
     });
 
     test('test update profile', () => {
-        const state: DeepPartial<ProfileSchema> = { form: { username: '123' } };
+        const state: DeepPartial<ProfileSchema> = { form: { firstname: '123' } };
 
         expect(profileReducer(
             state as ProfileSchema,
             profileActions.updateProfile({
-                username: '123456',
+                firstname: '123456',
             }),
         )).toEqual({
-            form: { username: '123456' },
+            form: { firstname: '123456' },
         });
     });
 
