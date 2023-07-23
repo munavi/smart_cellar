@@ -47,10 +47,6 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
             t('First and last names are required'),
     };
 
-    useInitialEffect(() => {
-        dispatch(fetchProfileData());
-    });
-
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ firstname: value || '' }));
     }, [dispatch]);
@@ -63,12 +59,16 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ currency }));
     }, [dispatch]);
 
-    const onChangeCountry = useCallback((country: Country) => {
-        dispatch(profileActions.updateProfile({ country }));
+    const onChangeCountry = useCallback((countryId: number) => {
+        dispatch(profileActions.updateProfile({ countryId }));
     }, [dispatch]);
 
+    useInitialEffect(() => {
+        dispatch(fetchProfileData());
+    });
+
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
                 {validateErrors?.length && validateErrors.map((err) => (

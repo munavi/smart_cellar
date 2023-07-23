@@ -12,7 +12,7 @@ export interface Profile {
     firstname?: string;
     lastname?: string;
     currency?: Currency,
-    country?: Country;
+    countryId?: number;
 }
 
 export interface ProfileSchema {

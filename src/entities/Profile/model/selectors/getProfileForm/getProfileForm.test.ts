@@ -8,7 +8,7 @@ describe('getProfileForm.test', () => {
         const data = {
             username: 'admin',
             age: 22,
-            country: Country.Ukraine,
+            // country: Country.Ukraine,
             lastname: 'ulbi tv',
             first: 'asd',
             city: 'asf',

@@ -5,7 +5,7 @@ import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
 
 const data = {
-    country: Country.Ukraine,
+    // country: Country.Ukraine,
     lastname: 'ulbi tv',
     first: 'asd',
     currency: Currency.USD,

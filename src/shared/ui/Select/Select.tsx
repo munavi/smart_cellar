@@ -3,7 +3,7 @@ import { ChangeEvent, memo, useMemo } from 'react';
 import cls from './Select.module.scss';
 
 export interface SelectOption {
-    value: string;
+    value: number;
     content: string;
 }
 

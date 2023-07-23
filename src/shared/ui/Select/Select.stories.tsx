@@ -16,7 +16,7 @@ export const Primary = Template.bind({});
 Primary.args = {
     label: 'Choose a value',
     options: [
-        { value: '123', content: 'First' },
-        { value: '1234', content: 'Second' },
+        { value: 1, content: 'First' },
+        { value: 2, content: 'Second' },
     ],
 };

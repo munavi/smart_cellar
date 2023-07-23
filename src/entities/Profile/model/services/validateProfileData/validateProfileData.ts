@@ -6,7 +6,7 @@ export const validateProfileData = (profile?: Profile) => {
     }
 
     const {
-        firstname, lastname, country,
+        firstname, lastname, countryId,
     } = profile;
     const errors: ValidateProfileError[] = [];
 
@@ -14,7 +14,7 @@ export const validateProfileData = (profile?: Profile) => {
         errors.push(ValidateProfileError.INCORRECT_USER_DATA);
     }
 
-    if (!country) {
+    if (!countryId) {
         errors.push(ValidateProfileError.INCORRECT_COUNTRY);
     }
 

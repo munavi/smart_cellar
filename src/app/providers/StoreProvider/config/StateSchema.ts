@@ -11,6 +11,7 @@ import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
 import { ItemDetailsSchema } from 'entities/Item';
 import { ProductSchema } from 'features/addNewProduct';
+import { CountrySchema } from 'entities/Country/model/types/CountrySchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -21,6 +22,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     itemDetails?: ItemDetailsSchema;
     product?: ProductSchema;
+    country?: CountrySchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

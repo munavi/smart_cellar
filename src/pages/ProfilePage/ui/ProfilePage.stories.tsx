@@ -22,7 +22,7 @@ Normal.args = {};
 Normal.decorators = [StoreDecorator({
     profile: {
         form: {
-            country: Country.Germany,
+            // country: Country.Germany,
             lastname: 'Murashko',
             firstname: 'asd',
             currency: Currency.EUR,
@@ -35,7 +35,7 @@ Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
     profile: {
         form: {
-            country: Country.Germany,
+            // country: Country.Germany,
             lastname: 'Murashko',
             firstname: 'asd',
             currency: Currency.EUR,

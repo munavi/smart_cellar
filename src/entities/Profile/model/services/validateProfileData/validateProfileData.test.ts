@@ -4,7 +4,7 @@ import { ValidateProfileError } from 'entities/Profile';
 import { validateProfileData } from './validateProfileData';
 
 const data = {
-    country: Country.Ukraine,
+    // country: Country.Ukraine,
     lastname: 'mustermann',
     first: 'max',
     currency: Currency.USD,
@@ -26,7 +26,7 @@ describe('validateProfileData.test', () => {
     });
 
     test('incorrect country', async () => {
-        const result = validateProfileData({ ...data, country: undefined });
+        const result = validateProfileData({ ...data, countryId: undefined });
 
         expect(result).toEqual([
             ValidateProfileError.INCORRECT_COUNTRY,
