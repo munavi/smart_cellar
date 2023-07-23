@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
 import { Profile, ValidateProfileError } from '../../types/profile';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
 import { validateProfileData } from '../validateProfileData/validateProfileData';
@@ -20,11 +21,13 @@ export const updateProfileData = createAsyncThunk<
             if (errors.length) {
                 return rejectWithValue(errors);
             }
+            const user = localStorage.getItem(USER_LOCALSTORAGE_KEY);
+            const userId = JSON.parse(user || '').id;
 
             try {
                 const response = await
                 extra.api.put<Profile>(
-                    'api/profile/90a22930-42cf-449e-a82d-e81c92a2f7f2',
+                    `api/profile/${userId}`,
                     formData,
                 );
 
