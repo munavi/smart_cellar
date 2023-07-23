@@ -7,7 +7,7 @@ export const fetchCountries = createAsyncThunk<
     void,
     ThunkConfig<string>
     >(
-        'country/fetchCountries',
+        'countries/fetchCountries',
         async (_, thunkApi) => {
             const { extra, rejectWithValue } = thunkApi;
 

@@ -22,7 +22,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     itemDetails?: ItemDetailsSchema;
     product?: ProductSchema;
-    country?: CountrySchema;
+    countries?: CountrySchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

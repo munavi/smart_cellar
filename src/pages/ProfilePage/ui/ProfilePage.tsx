@@ -47,6 +47,12 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
             t('First and last names are required'),
     };
 
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchProfileData());
+        }
+    }, [dispatch]);
+
     const onChangeFirstname = useCallback((value?: string) => {
         dispatch(profileActions.updateProfile({ firstname: value || '' }));
     }, [dispatch]);
@@ -55,20 +61,12 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ lastname: value || '' }));
     }, [dispatch]);
 
-    const onChangeCurrency = useCallback((currency: Currency) => {
-        dispatch(profileActions.updateProfile({ currency }));
-    }, [dispatch]);
-
     const onChangeCountry = useCallback((countryId: number) => {
         dispatch(profileActions.updateProfile({ countryId }));
     }, [dispatch]);
 
-    useInitialEffect(() => {
-        dispatch(fetchProfileData());
-    });
-
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
                 <ProfilePageHeader />
                 {validateErrors?.length && validateErrors.map((err) => (
@@ -85,7 +83,6 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     readonly={readonly}
                     onChangeFirstname={onChangeFirstname}
                     onChangeLastname={onChangeLastname}
-                    onChangeCurrency={onChangeCurrency}
                     onChangeCountry={onChangeCountry}
                 />
             </div>

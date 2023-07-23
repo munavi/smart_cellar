@@ -24,7 +24,7 @@ interface CountrySelectProps {
 }
 
 const reducers: ReducersList = {
-    country: countriesReducer,
+    countries: countriesReducer,
 };
 
 export const CountrySelect = memo(({
@@ -59,7 +59,7 @@ export const CountrySelect = memo(({
     // };
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <Select
                 className={classNames('', {}, [className])}
                 label={t('Choose a country')}

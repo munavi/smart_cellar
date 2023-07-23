@@ -21,7 +21,7 @@ Primary.args = {
         // country: Country.Ukraine,
         lastname: 'ulbi tv',
         firstname: 'asd',
-        currency: Currency.USD,
+        // currency: Currency.USD,
     },
 };
 
