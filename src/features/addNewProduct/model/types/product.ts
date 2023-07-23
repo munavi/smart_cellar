@@ -1,14 +1,14 @@
 import { Category } from 'entities/Category';
 import { StorageLocation } from 'entities/StorageLocation';
 
-
 export interface Product{
     id?: string;
-    productName?: string;
-    number?: number;
-    category?: Category;
-    storageLocation?: StorageLocation;
+    name?: string;
+    counter?: number;
     date?: string;
+    categoryId?: Category;
+    storageLocationId?: StorageLocation;
+
 }
 export interface ProductSchema {
     data?: Product;
