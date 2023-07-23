@@ -4,5 +4,4 @@ export interface CountrySchema {
     isLoading: boolean;
     error?: string;
     data?: Country[];
-    selectedCountryId?: number;
 }

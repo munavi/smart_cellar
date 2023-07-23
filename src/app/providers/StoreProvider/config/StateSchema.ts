@@ -12,6 +12,7 @@ import { To } from 'react-router-dom';
 import { ItemDetailsSchema } from 'entities/Item';
 import { ProductSchema } from 'features/addNewProduct';
 import { CountrySchema } from 'entities/Country/model/types/CountrySchema';
+import { CurrencySchema } from 'entities/Currency/model/types/CurrencySchema';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -23,6 +24,7 @@ export interface StateSchema {
     itemDetails?: ItemDetailsSchema;
     product?: ProductSchema;
     countries?: CountrySchema;
+    currencies?: CurrencySchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

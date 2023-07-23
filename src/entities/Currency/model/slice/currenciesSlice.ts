@@ -1,35 +1,35 @@
 import {
     createSlice, PayloadAction,
 } from '@reduxjs/toolkit';
-import { CountrySchema } from '../types/CountrySchema';
-import { fetchCountries } from '../services/fetchCountries/fetchCountries';
-import { Country } from '../types/country';
+import { CurrencySchema } from '../types/CurrencySchema';
+import { fetchCurrencies } from '../services/fetchCurrencies/fetchCurrencies';
+import { Currency } from '../types/currency';
 
-const initialState: CountrySchema = {
+const initialState: CurrencySchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
 };
 
-export const countriesSlice = createSlice({
-    name: 'countries',
+export const currenciesSlice = createSlice({
+    name: 'currencies',
     initialState,
     reducers: {
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchCountries.pending, (state) => {
+            .addCase(fetchCurrencies.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchCountries.fulfilled, (
+            .addCase(fetchCurrencies.fulfilled, (
                 state,
-                action: PayloadAction<Country[]>,
+                action: PayloadAction<Currency[]>,
             ) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchCountries.rejected, (state, action) => {
+            .addCase(fetchCurrencies.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });
@@ -37,5 +37,5 @@ export const countriesSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { actions: countriesActions } = countriesSlice;
-export const { reducer: countriesReducer } = countriesSlice;
+export const { actions: currenciesActions } = currenciesSlice;
+export const { reducer: currenciesReducer } = currenciesSlice;

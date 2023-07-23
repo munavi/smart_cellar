@@ -5,12 +5,14 @@ import { profileReducer } from 'entities/Profile';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { itemDetailsReducer } from 'entities/Item/model/slice/itemDetailsSlice';
 import { countriesReducer } from 'entities/Country/model/slice/countriesSlice';
+import { currenciesReducer } from 'entities/Currency/model/slice/currenciesSlice';
 
 const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
     profile: profileReducer,
     itemDetails: itemDetailsReducer,
     countries: countriesReducer,
+    currencies: currenciesReducer,
 };
 
 export const StoreDecorator = (

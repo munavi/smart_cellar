@@ -65,6 +65,10 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(profileActions.updateProfile({ countryId }));
     }, [dispatch]);
 
+    const onChangeCurrency = useCallback((currencyId: number) => {
+        dispatch(profileActions.updateProfile({ currencyId }));
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
@@ -84,6 +88,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
                     onChangeFirstname={onChangeFirstname}
                     onChangeLastname={onChangeLastname}
                     onChangeCountry={onChangeCountry}
+                    onChangeCurrency={onChangeCurrency}
                 />
             </div>
         </DynamicModuleLoader>

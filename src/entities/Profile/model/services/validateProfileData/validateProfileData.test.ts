@@ -4,10 +4,10 @@ import { ValidateProfileError } from 'entities/Profile';
 import { validateProfileData } from './validateProfileData';
 
 const data = {
-    // country: Country.Ukraine,
+    country: 'USA',
     lastname: 'mustermann',
     first: 'max',
-    currency: Currency.USD,
+    currency: 'USD',
 };
 
 describe('validateProfileData.test', () => {

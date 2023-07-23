@@ -1,5 +1,4 @@
-export enum Currency {
-    EUR = 'EUR',
-    USD = 'USD',
-    TNG = 'TNG',
+export interface Currency {
+    id: number;
+    name: string;
 }

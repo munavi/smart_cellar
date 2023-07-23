@@ -1,14 +1,16 @@
 import {
-    profileActions, profileReducer, ProfileSchema, updateProfileData, ValidateProfileError,
+    profileActions,
+    profileReducer,
+    ProfileSchema,
+    updateProfileData,
+    ValidateProfileError,
 } from 'entities/Profile';
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
 
 const data = {
-    // country: Country.Ukraine,
+    country: 'Germany',
     lastname: 'ulbi tv',
     first: 'asd',
-    currency: Currency.USD,
+    currency: 'EUR',
 };
 
 describe('profileSlice.test', () => {

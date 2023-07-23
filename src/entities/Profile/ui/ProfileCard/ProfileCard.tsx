@@ -2,9 +2,7 @@ import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
-import { Currency } from 'entities/Currency/model/types/currency';
-// import { CurrencySelect } from 'entities/Currency';
-import { Country } from 'entities/Country/model/types/country';
+import { CurrencySelect } from 'entities/Currency';
 import { CountrySelect } from 'entities/Country';
 import { Loader } from 'shared/ui/Loader/Loader';
 import cls from './ProfileCard.module.scss';
@@ -18,7 +16,7 @@ interface ProfileCardProps {
     readonly?: boolean;
     onChangeLastname?: (value?: string) => void;
     onChangeFirstname?: (value?: string) => void;
-    onChangeCurrency?: (currency: Currency) => void;
+    onChangeCurrency?: (currency: number) => void;
     onChangeCountry?: (country: number) => void;
 }
 
@@ -83,12 +81,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
                     onChange={onChangeLastname}
                     readonly={readonly}
                 />
-                {/* <CurrencySelect */}
-                {/*    className={cls.input} */}
-                {/*    value={data?.currency} */}
-                {/*    onChange={onChangeCurrency} */}
-                {/*    readonly={readonly} */}
-                {/* /> */}
+                <CurrencySelect
+                    className={cls.input}
+                    value={data?.currencyId}
+                    onChange={onChangeCurrency}
+                    readonly={readonly}
+                />
                 <CountrySelect
                     className={cls.input}
                     value={data?.countryId}
