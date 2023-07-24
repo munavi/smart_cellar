@@ -1,0 +1,50 @@
+.ItemsDetails {
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listItem {
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--inverted-primary-color);
+
+    .btnGroup {
+        flex: 0 1 auto;
+        min-width: 0;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        height: 2rem;
+    }
+}
+
+.listItemText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.txtFld {
+    font-weight: 800;
+    font-size: 1rem;
+    line-height: 3rem;
+    letter-spacing: 0.0094em;
+    color: #f00;
+    box-sizing: border-box;
+    height: 1rem;
+}
+
+.skeletonItem {
+    height: 3rem;
+    width: 100%;
+}

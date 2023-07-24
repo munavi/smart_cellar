@@ -3,10 +3,22 @@ import { StateSchema, StoreProvider } from 'app/providers/StoreProvider';
 import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from 'entities/Profile';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
+import { countriesReducer } from 'entities/Country/model/slice/countriesSlice';
+import { currenciesReducer } from 'entities/Currency/model/slice/currenciesSlice';
+import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
+import {
+    storageLocationsReducer,
+} from 'entities/StorageLocation/model/slice/storageLocationsSlice';
 
 const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
     profile: profileReducer,
+    countries: countriesReducer,
+    currencies: currenciesReducer,
+    product: productDetailsReducer,
+    categories: categoriesReducer,
+    storageLocations: storageLocationsReducer,
 };
 
 export const StoreDecorator = (

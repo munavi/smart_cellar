@@ -8,12 +8,13 @@ import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from
     'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
+import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { login } from '../../../../http/userAPI';
 import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
@@ -28,13 +29,13 @@ const initialReducers: ReducersList = {
 const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
-    const username = useSelector(getLoginUsername);
+    const email = useSelector(getLoginEmail);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-    const onChangeUsername = useCallback((value: string) => {
-        dispatch(loginActions.setUsername(value));
+    const onChangeEmail = useCallback((value: string) => {
+        dispatch(loginActions.setEmail(value));
     }, [dispatch]);
 
     const onChangePassword = useCallback((value: string) => {
@@ -42,11 +43,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     }, [dispatch]);
 
     const onLoginClick = useCallback(async () => {
-        const result = await dispatch(loginByUsername({ username, password }));
+        const result = await dispatch(loginByEmail({ email, password }));
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess();
         }
-    }, [onSuccess, dispatch, password, username]);
+    }, [onSuccess, dispatch, password, email]);
 
     return (
         <DynamicModuleLoader
@@ -66,11 +67,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     type="text"
                     className={cls.input}
                     placeholder={t('Input username')}
-                    onChange={onChangeUsername}
-                    value={username}
+                    onChange={onChangeEmail}
+                    value={email}
                 />
                 <Input
-                    type="text"
+                    type="password"
                     className={cls.input}
                     placeholder={t('Input password')}
                     onChange={onChangePassword}
