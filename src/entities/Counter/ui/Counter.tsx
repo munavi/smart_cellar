@@ -1,53 +1,52 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { ButtonGroup, Button } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from 'shared/ui/Counter/Counter.module.scss';
-import { counterActions } from '../model/slice/counterSlice';
-import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue';
+import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
+import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
 
 interface CounterProps {
     className?: string;
+    quantity: number;
+    productId: number;
 }
 
-export const Counter = ({ className }: CounterProps) => {
+export const Counter = ({ className, quantity, productId }: CounterProps) => {
     const dispatch = useDispatch();
-    const counterValue = useSelector(getCounterValue);
     const { t } = useTranslation('main');
 
     const increment = () => {
-        dispatch(counterActions.increment());
+        dispatch(productDetailsActions.updateProductById({
+            productId,
+            updatedData: {
+                quantity: quantity + 1,
+            },
+        }));
+        dispatch(updateProductById(productId));
     };
 
     const decrement = () => {
-        dispatch(counterActions.decrement());
+        dispatch(productDetailsActions.updateProductById({
+            productId,
+            updatedData: {
+                quantity: quantity - 1,
+            },
+        }));
+        dispatch(updateProductById(productId));
     };
 
     return (
         <div
             className={classNames(cls.Counter, {}, [])}
         >
-            {/* <h1 data-testid="value-title">{counterValue}</h1> */}
-            {/* <h1 data-testid="value-title">{counterValue}</h1> */}
-            {/* <Button */}
-            {/*    onClick={increment} */}
-            {/*    data-testid="increment-btn" */}
-            {/* > */}
-            {/*    {t('increment')} */}
-            {/* </Button> */}
-            {/* <Button */}
-            {/*    data-testid="decrement-btn" */}
-            {/*    onClick={decrement} */}
-            {/* > */}
-            {/*    {t('decrement')} */}
-            {/* </Button> */}
             <ButtonGroup
                 variant="contained"
                 aria-label="outlined primary button group"
                 className={cls.btnGroup}
             >
                 <Button onClick={increment}>+</Button>
-                <Button data-testid="value-title" disabled>{counterValue}</Button>
+                <Button data-testid="value-title" disabled>{quantity}</Button>
                 <Button onClick={decrement}>-</Button>
             </ButtonGroup>
         </div>
