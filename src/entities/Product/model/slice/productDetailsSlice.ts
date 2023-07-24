@@ -2,7 +2,7 @@ import {
     createSlice, PayloadAction,
 } from '@reduxjs/toolkit';
 import { ProductDetailsSchema } from '../types/productDetailsSchema';
-import { fetchProductById } from '../services/fetchProductById/fetchProductById';
+import { fetchProductsByUserId } from '../services/fetchProductsByUserId/fetchProductsByUserId';
 import { Product } from '../types/product';
 
 const initialState: ProductDetailsSchema = {
@@ -17,18 +17,18 @@ export const productDetailsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchProductById.pending, (state) => {
+            .addCase(fetchProductsByUserId.pending, (state) => {
                 state.error = undefined;
                 state.isLoading = true;
             })
-            .addCase(fetchProductById.fulfilled, (
+            .addCase(fetchProductsByUserId.fulfilled, (
                 state,
-                action: PayloadAction<Product>,
+                action: PayloadAction<Product[]>,
             ) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchProductById.rejected, (state, action) => {
+            .addCase(fetchProductsByUserId.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

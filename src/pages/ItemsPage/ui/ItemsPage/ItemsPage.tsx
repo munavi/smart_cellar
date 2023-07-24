@@ -12,19 +12,31 @@ import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { AddNewProduct } from 'features/addNewProduct';
 import { CategorySelect } from 'entities/Category';
 import { StorageLocationSelect } from 'entities/StorageLocation';
+import { useSelector } from 'react-redux';
+import { getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import {
+    fetchProductsByUserId,
+} from 'entities/Product/model/services/fetchProductsByUserId/fetchProductsByUserId';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import {
+    DynamicModuleLoader, ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
 import cls from './ItemsPage.module.scss';
 
 interface ItemsPageProps {
     className?: string,
-
 }
+
+const reducers: ReducersList = {
+    productDetails: productDetailsReducer,
+};
 
 const ItemsPage = ({ className }: ItemsPageProps) => {
     const { t } = useTranslation();
-    const items = [{ name: 'Item1' }, { name: 'Item2' }, { name: 'Item3' },
-        { name: 'Item4' }, { name: 'Item5' }, { name: 'Item6' }, { name: 'Item7' },
-        { name: 'Item1' }, { name: 'Item2' }, { name: 'Item3' },
-        { name: 'Item4' }, { name: 'Item5' }, { name: 'Item6' }, { name: 'Item7' }];
+    const products = useSelector(getProductDetailsData);
+    const dispatch = useAppDispatch();
     const [isModal, setIsModal] = useState(false);
     const onShowModal = useCallback(() => {
         setIsModal(true);
@@ -33,11 +45,16 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
         setIsModal(false);
     }, []);
 
+    useInitialEffect(() => {
+        dispatch(fetchProductsByUserId());
+    });
+
     // Array item should be have a such structure
     // {name: string, count: number, location: Enum value as string, date: string}
     // Product category shoul be use as a filter option
 
     return (
+
         <div className={classNames(cls.ItemsPage, {}, [className])}>
             {t('Itemspage')}
             <AddNewProduct onShowModal={onShowModal} />
@@ -62,34 +79,45 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
                 <CategorySelect />
 
             </Modal>
-            <Stack
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
-                spacing={1}
-            >
+            <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
                 {
-                    items.map((item) => (
-                        <ListItem className={cls.listItem}>
-                            <Button size="small" variant="contained"><EditOutlinedIcon /></Button>
-                            <ListItemText className={cls.listItemText}>
-                                {t(item.name)}
-                            </ListItemText>
-                            <Counter className={cls.listItem} />
-                            <ListItemText className={cls.listItemText}>
-                                {t('Item location')}
-                            </ListItemText>
-                            {/* eslint-disable-next-line i18next/no-literal-string */}
-                            <ListItemText className={cls.listItemText}>
-                                2023 - 11 - 11
-                            </ListItemText>
-                            <Button size="small" color="error" variant="contained">
-                                {t('DELETE')}
-                            </Button>
-                        </ListItem>
-                    ))
+                    products && products.length > 0 && (
+                        <Stack
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={1}
+                        >
+                            {
+                                products?.map((product, index) => (
+                                    <ListItem key={product.id} className={cls.listItem}>
+                                        <Button
+                                            size="small"
+                                            variant="contained"
+                                        >
+                                            <EditOutlinedIcon />
+                                        </Button>
+                                        <ListItemText className={cls.listItemText}>
+                                            {product.name}
+                                        </ListItemText>
+                                        <Counter className={cls.listItem} />
+                                        <ListItemText className={cls.listItemText}>
+                                            {product.storageLocationId}
+                                        </ListItemText>
+                                        {/* eslint-disable-next-line i18next/no-literal-string */}
+                                        <ListItemText className={cls.listItemText}>
+                                            {product.date}
+                                        </ListItemText>
+                                        <Button size="small" color="error" variant="contained">
+                                            {t('DELETE')}
+                                        </Button>
+                                    </ListItem>
+                                ))
+                            }
+                        </Stack>
+                    )
                 }
-            </Stack>
+            </DynamicModuleLoader>
         </div>
     );
 };

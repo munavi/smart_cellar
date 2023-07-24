@@ -1,12 +1,10 @@
-import { StorageLocation } from 'entities/StorageLocation';
-
 export interface Product{
     id?: string;
     name?: string;
     counter?: number;
     date?: string;
-    categoryId?: string;
-    storageLocationId?: StorageLocation;
+    categoryId?: number;
+    storageLocationId?: number;
 
 }
 export interface ProductSchema {
