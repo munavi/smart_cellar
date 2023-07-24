@@ -9,8 +9,10 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import cls from './ItemsPage.module.scss';
 import { AddNewProduct } from 'features/addNewProduct';
+import { CategorySelect } from 'entities/Category';
+import { StorageLocationSelect } from 'entities/StorageLocation';
+import cls from './ItemsPage.module.scss';
 
 interface ItemsPageProps {
     className?: string,
@@ -56,11 +58,8 @@ const ItemsPage = ({ className }: ItemsPageProps) => {
                     align={TextAlign.CENTER}
                 />
                 <DatePicker />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('change a date')}
-                    align={TextAlign.CENTER}
-                />
+                <StorageLocationSelect />
+                <CategorySelect />
 
             </Modal>
             <Stack

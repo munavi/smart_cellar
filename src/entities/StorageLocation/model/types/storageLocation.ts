@@ -1,6 +1,4 @@
-export enum StorageLocation {
-    Refrigerator ='Refrigerator',
-    StorageRoom = 'StorageRoom',
-    Kitchen = 'Kitchen',
-    CanningCabinet = 'CanningCabinet',
+export interface StorageLocation {
+    id: number;
+    name: string;
 }

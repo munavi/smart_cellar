@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { ItemDetails } from 'entities/Item';
+import { ProductDetails } from 'entities/Product';
 import { useParams } from 'react-router-dom';
 import cls from './ItemDetailsPage.module.scss';
 
@@ -25,7 +25,7 @@ const ItemDetailsPage = (props: ItemDetailsPageProps) => {
 
     return (
         <div className={classNames(cls.ItemDetailsPage, {}, [className])}>
-            <ItemDetails id={id} />
+            <ProductDetails id={id} />
         </div>
     );
 };

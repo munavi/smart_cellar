@@ -1,4 +1,3 @@
-import { Category } from 'entities/Category';
 import { StorageLocation } from 'entities/StorageLocation';
 
 export interface Product{
@@ -6,7 +5,7 @@ export interface Product{
     name?: string;
     counter?: number;
     date?: string;
-    categoryId?: Category;
+    categoryId?: string;
     storageLocationId?: StorageLocation;
 
 }
