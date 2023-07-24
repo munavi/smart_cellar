@@ -13,8 +13,4 @@ export default {
 const Template: ComponentStory<typeof IdConverter> = (args) => <IdConverter {...args} />;
 
 export const Normal = Template.bind({});
-Normal.args = {
-
-};
-
-
+Normal.args = {};
