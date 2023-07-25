@@ -1,4 +1,5 @@
 .Counter {
+  //position: relative;
     .btnGroup {
         flex: 0 1 auto;
         min-width: 0;
@@ -8,6 +9,9 @@
         margin-right: 3rem;
         color: var(--inverted-primary-color);
     }
+  .btnPlacerHolder{
+      width: 3rem;
+  }
 }
 
 

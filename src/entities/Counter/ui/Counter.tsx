@@ -46,7 +46,13 @@ export const Counter = ({ className, quantity, productId }: CounterProps) => {
                 className={cls.btnGroup}
             >
                 <Button onClick={increment}>+</Button>
-                <Button data-testid="value-title" disabled>{quantity}</Button>
+                <Button
+                    data-testid="value-title"
+                    disabled
+                    className={cls.btnPlacerHolder}
+                >
+                    { quantity }
+                </Button>
                 <Button onClick={decrement}>-</Button>
             </ButtonGroup>
         </div>

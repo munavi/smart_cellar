@@ -5,7 +5,12 @@ import {
     updateProductById,
 } from
     'entities/Product/model/services/updateProductById/updateProductById';
-import { ProductDetailsSchema } from '../types/productDetailsSchema';
+import {
+    deleteProductById,
+} from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import {
+    ProductDetailsSchema,
+} from '../types/productDetailsSchema';
 import { fetchProductsByUserId } from '../services/fetchProductsByUserId/fetchProductsByUserId';
 import { Product } from '../types/product';
 
@@ -33,6 +38,15 @@ export const productDetailsSlice = createSlice({
                         ...updatedData,
                     };
                 }
+            }
+        },
+        deleteProductById: (
+            state,
+            action: PayloadAction<number>,
+        ) => {
+            if (state.data) {
+                const productIdToDelete = action.payload;
+                state.data = state.data.filter((product) => product.id !== productIdToDelete);
             }
         },
     },
@@ -73,6 +87,24 @@ export const productDetailsSlice = createSlice({
                 }
             })
             .addCase(updateProductById.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(deleteProductById.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(deleteProductById.fulfilled, (
+                state,
+                action: PayloadAction<number>,
+            ) => {
+                const deletedProductId = action.payload;
+                state.isLoading = false;
+                if (state.data) {
+                    state.data = state.data.filter((product) => product.id !== deletedProductId);
+                }
+            })
+            .addCase(deleteProductById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

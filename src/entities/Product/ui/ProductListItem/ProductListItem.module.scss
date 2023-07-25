@@ -10,15 +10,15 @@
 
 .container {
     background-color: coral;
-    display: grid;
-    grid-template-columns: 1fr 4fr 2fr 1fr 2fr 2fr 1fr;
+    display: grid !important;
+    grid-template-columns: 1fr 4fr 3fr 4fr 3fr 2fr 1fr;
     border-radius: 10px;
     gap: 10px;
 }
 
 .item {
     border-radius: 10px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
 }

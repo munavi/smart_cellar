@@ -24,6 +24,7 @@ import {
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
+import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -51,10 +52,8 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     });
 
     const handleDeleteProduct = useCallback((productId:number) => {
-        // Ваша логика удаления продукта по productId
-        // Например, можно использовать Redux action для удаления продукта
-        // dispatch(deleteProductAction(productId));
-    }, []);
+        dispatch(deleteProductById(productId));
+    }, [dispatch]);
 
     // Функция для редактирования продукта
     const handleEditProduct = useCallback((productId) => {
