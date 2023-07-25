@@ -38,7 +38,7 @@ export const Counter = ({ className, quantity, productId }: CounterProps) => {
 
     return (
         <div
-            className={classNames(cls.Counter, {}, [])}
+            className={classNames(cls.Counter, {}, [className])}
         >
             <ButtonGroup
                 variant="contained"

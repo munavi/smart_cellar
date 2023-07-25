@@ -31,16 +31,26 @@ export const IdConverter = (props: IdConverterProps) => {
     let name;
     const categories = useSelector(getCategories);
     const storageLocations = useSelector(getStorageLocations);
-    if (content === 'Category') {
-        name = categories?.find((category) => value === category.id);
-    } else if (content === 'StorageLocation') {
-        name = storageLocations?.find((storageLocation) => value === storageLocation.id);
+    switch (content) {
+    case 'Category':
+        // eslint-disable-next-line no-case-declarations
+        const category = categories?.find((category) => value === category.id);
+        name = category ? category.name : '';
+        break;
+    case 'StorageLocation':
+        // eslint-disable-next-line max-len,no-case-declarations
+        const storageLocation = storageLocations?.find((storageLocation) => value === storageLocation.id);
+        name = storageLocation ? storageLocation.name : '';
+        break;
+    default:
+        name = '';
+        break;
     }
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.IdConverter, {}, [className])}>
-                {name ? name.name : ''}
+                {name}
             </div>
         </DynamicModuleLoader>
 
