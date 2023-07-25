@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonGroup } from '@mui/material';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from 'shared/ui/Counter/Counter.module.scss';
+import cls from 'entities/Counter/ui/Counter.module.scss';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
 
