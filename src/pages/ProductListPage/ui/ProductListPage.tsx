@@ -1,10 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import {
-    Button, ListItem, ListItemText, Stack, TextField,
-} from '@mui/material';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { Counter } from 'entities/Counter';
+import { Stack } from '@mui/material';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import React, { useCallback, useState } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
@@ -15,16 +12,18 @@ import { StorageLocationSelect } from 'entities/StorageLocation';
 import { useSelector } from 'react-redux';
 import { getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import {
-    fetchProductsByUserId,
-} from 'entities/Product/model/services/fetchProductsByUserId/fetchProductsByUserId';
+import { fetchProductsByUserId } from 'entities/Product/model/services/fetchProductsByUserId/fetchProductsByUserId';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import {
-    DynamicModuleLoader, ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
-import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import {
+    deleteProductById,
+} from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import { Input } from 'shared/ui/Input/Input';
+import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
+import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
+import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -38,6 +37,7 @@ const reducers: ReducersList = {
 const ProductListPage = ({ className }: ItemsPageProps) => {
     const { t } = useTranslation();
     const products = useSelector(getProductDetailsData);
+    const newProductData = useSelector(getAddNewProductData);
     const dispatch = useAppDispatch();
     const [isModal, setIsModal] = useState(false);
     const onShowModal = useCallback(() => {
@@ -55,7 +55,37 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
         dispatch(deleteProductById(productId));
     }, [dispatch]);
 
-    // Функция для редактирования продукта
+    const onChangeItemName = useCallback((name?: string) => {
+        dispatch(addNewProductActions.updateNewProduct({ name }));
+    }, [dispatch]);
+
+    const onChangeItemQuantity = useCallback((quantity?: string) => {
+        dispatch(addNewProductActions.updateNewProduct({ quantity }));
+    }, [dispatch]);
+
+    const onChangeDate = useCallback((date: string) => {
+        dispatch(addNewProductActions.updateNewProduct({ date }));
+    }, [dispatch]);
+
+    const onChangeCategory = useCallback((categoryId: number) => {
+        dispatch(addNewProductActions.updateNewProduct({ categoryId }));
+    }, [dispatch]);
+
+    const onChangeStorageLocation = useCallback((storageLocationId: number) => {
+        dispatch(addNewProductActions.updateNewProduct({ storageLocationId }));
+    }, [dispatch]);
+
+    const onSave = useCallback(() => {
+        dispatch(addNewProduct());
+        onCloseModal();
+        dispatch(addNewProductActions.cancelEdit());
+    }, [dispatch, onCloseModal]);
+
+    const onCancel = useCallback(() => {
+        dispatch(addNewProductActions.cancelEdit());
+        onCloseModal();
+    }, [dispatch, onCloseModal]);
+
     const handleEditProduct = useCallback((productId) => {
         // Ваша логика редактирования продукта по productId
         // Например, можно открыть модальное окно для редактирования продукта
@@ -81,15 +111,41 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                     title={t('Item name')}
                     align={TextAlign.CENTER}
                 />
-                <TextField />
+                <Input
+                    placeholder="Item name"
+                    onChange={onChangeItemName}
+                    value={newProductData?.name || ''}
+                />
+                <Text
+                    theme={TextTheme.PRIMARY}
+                    title={t('Item Quantity')}
+                    align={TextAlign.CENTER}
+                />
+                <Input
+                    placeholder="Item quantity"
+                    onChange={onChangeItemQuantity}
+                    value={newProductData?.quantity || ''}
+                />
                 <Text
                     theme={TextTheme.PRIMARY}
                     title={t('change a date')}
                     align={TextAlign.CENTER}
                 />
-                <DatePicker />
-                <StorageLocationSelect />
-                <CategorySelect />
+                <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
+                <StorageLocationSelect onChange={onChangeStorageLocation} />
+                <CategorySelect onChange={onChangeCategory} />
+                <Button
+                    className={cls.editBtn}
+                    theme={ButtonTheme.OUTLINE_RED}
+                    onClick={onCancel}
+                >
+                    CANCEL
+                </Button>
+                <Button
+                    onClick={onSave}
+                >
+                    SAVE
+                </Button>
 
             </Modal>
             <DynamicModuleLoader reducers={reducers} removeAfterUnmount>

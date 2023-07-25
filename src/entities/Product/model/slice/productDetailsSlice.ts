@@ -8,6 +8,7 @@ import {
 import {
     deleteProductById,
 } from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
 import {
     ProductDetailsSchema,
 } from '../types/productDetailsSchema';
@@ -47,6 +48,12 @@ export const productDetailsSlice = createSlice({
             if (state.data) {
                 const productIdToDelete = action.payload;
                 state.data = state.data.filter((product) => product.id !== productIdToDelete);
+            }
+        },
+        addNewProduct: (state, action: PayloadAction<Product>) => {
+            if (state.data) {
+                const newProduct = action.payload;
+                state.data.push(newProduct);
             }
         },
     },
@@ -105,6 +112,24 @@ export const productDetailsSlice = createSlice({
                 }
             })
             .addCase(deleteProductById.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(addNewProduct.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(addNewProduct.fulfilled, (
+                state,
+                action: PayloadAction<Product>,
+            ) => {
+                const newProduct = action.payload;
+                state.isLoading = false;
+                if (state.data) {
+                    state.data.push(newProduct);
+                }
+            })
+            .addCase(addNewProduct.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             });

@@ -48,7 +48,7 @@ export const IdConverter = (props: IdConverterProps) => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <div className={classNames(cls.IdConverter, {}, [className])}>
                 {name}
             </div>

@@ -4,7 +4,9 @@ import { Button, ButtonGroup } from '@mui/material';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from 'entities/Counter/ui/Counter.module.scss';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
-import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
+import {
+    updateProductById,
+} from 'entities/Product/model/services/updateProductById/updateProductById';
 
 interface CounterProps {
     className?: string;

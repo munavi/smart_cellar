@@ -10,7 +10,7 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions } from 'react-router';
 import { To } from 'react-router-dom';
 import { ProductDetailsSchema } from 'entities/Product';
-import { ProductSchema } from 'features/addNewProduct';
+import { NewProductSchema } from 'features/addNewProduct';
 import { CountrySchema } from 'entities/Country/model/types/CountrySchema';
 import { CurrencySchema } from 'entities/Currency/model/types/CurrencySchema';
 import { CategorySchema } from 'entities/Category/model/types/CategorySchema';
@@ -24,7 +24,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     productDetails?: ProductDetailsSchema;
-    product?: ProductSchema;
+    newProduct?: NewProductSchema;
     countries?: CountrySchema;
     currencies?: CurrencySchema;
     categories?: CategorySchema;

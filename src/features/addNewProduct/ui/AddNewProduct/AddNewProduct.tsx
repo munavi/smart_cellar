@@ -1,18 +1,12 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { Fab, ListItem, ListItemText } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
-    DynamicModuleLoader,
-    ReducersList,
+    DynamicModuleLoader, ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { addNewProductActions, addNewProductReducer } from '../../model/slices/productSlice';
-import {
-    getAddNewProductError, getAddNewProductData,
-} from '../../model/selectors/addNewProductSelectors';
+import { addNewProductReducer } from '../../model/slices/newProductSlice';
 import cls from './AddNewProduct.module.scss';
 
 export interface AddNewProductProps {
@@ -21,19 +15,12 @@ export interface AddNewProductProps {
 }
 
 const reducers: ReducersList = {
-    product: addNewProductReducer,
+    newProduct: addNewProductReducer,
 };
 
 const AddNewProduct = memo((props: AddNewProductProps) => {
     const { t } = useTranslation();
     const { className, onShowModal } = props;
-    const text = useSelector(getAddNewProductData);
-    const error = useSelector(getAddNewProductError);
-    const dispatch = useAppDispatch();
-
-    const onCommentTextChange = useCallback((value: string) => {
-        dispatch(addNewProductActions.setText(value));
-    }, [dispatch]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
