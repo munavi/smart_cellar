@@ -5,5 +5,4 @@ export interface ProductDetailsSchema {
     error?: string;
     data?: Product[];
     productForm?: Partial<Product>;
-    productData?: Partial<Product>;
 }

@@ -12,11 +12,13 @@
     background-color: coral;
     display: grid !important;
     grid-template-columns: 1fr 4fr 3fr 4fr 3fr 2fr 1fr;
+    grid-template-rows: auto;
     border-radius: 10px;
     gap: 10px;
 }
 
 .item {
+    display:flex;
     border-radius: 10px;
     justify-content: flex-start;
     align-items: center;

@@ -11,7 +11,9 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import { Product } from 'entities/Product';
-import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
+import {
+    updateProductById,
+} from 'entities/Product/model/services/updateProductById/updateProductById';
 import { useSelector } from 'react-redux';
 import { getProductDetailsForm } from 'entities/Product/model/selectors/productDetails';
 import cls from './EditProductModal.module.scss';
@@ -20,14 +22,13 @@ interface EditProductModalProps {
     isOpen: boolean;
     onClose: () => void;
     className?: string;
-    product?: Product;
     productId: number;
 }
 
 export const EditProductModal = memo((props: EditProductModalProps) => {
     const { t } = useTranslation();
     const {
-        isOpen, onClose, className, product, productId,
+        isOpen, onClose, className, productId,
     } = props;
     const dispatch = useAppDispatch();
     const productForm = useSelector((getProductDetailsForm));

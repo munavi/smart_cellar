@@ -20,7 +20,6 @@ const initialState: ProductDetailsSchema = {
     error: undefined,
     data: undefined,
     productForm: undefined,
-    productData: undefined,
 };
 
 export const productDetailsSlice = createSlice({
@@ -33,8 +32,7 @@ export const productDetailsSlice = createSlice({
         ) => {
             const productId = action.payload;
             if (state.data) {
-                state.productData = state.data.find((product) => product.id === productId);
-                state.productForm = state.productData;
+                state.productForm = state.data.find((product) => product.id === productId);
             }
         },
         updateProductById: (

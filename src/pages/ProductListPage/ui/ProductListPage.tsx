@@ -23,10 +23,12 @@ import { productDetailsReducer } from 'entities/Product/model/slice/productDetai
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
 import { Input } from 'shared/ui/Input/Input';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
-import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
+import { addNewProductActions, addNewProductReducer } from 'features/addNewProduct/model/slices/newProductSlice';
 import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
 import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
-import { storageLocationsReducer } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
+import {
+    storageLocationsReducer,
+} from 'entities/StorageLocation/model/slice/storageLocationsSlice';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -37,6 +39,7 @@ const reducers: ReducersList = {
     productDetails: productDetailsReducer,
     categories: categoriesReducer,
     storageLocations: storageLocationsReducer,
+    newProduct: addNewProductReducer,
 };
 
 const ProductListPage = ({ className }: ItemsPageProps) => {
@@ -88,7 +91,7 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     }, [dispatch, onCloseModal]);
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ItemsPage, {}, [className])}>
                 {t('Itemspage')}
                 <AddNewProduct onShowModal={onShowModal} />
@@ -123,8 +126,8 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                         align={TextAlign.CENTER}
                     />
                     <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
-                    <StorageLocationSelect onChange={onChangeStorageLocation} />
-                    <CategorySelect onChange={onChangeCategory} />
+                    <StorageLocationSelect value={newProductData?.storageLocationId} onChange={onChangeStorageLocation} />
+                    <CategorySelect value={newProductData?.categoryId} onChange={onChangeCategory} />
                     <Button
                         className={cls.editBtn}
                         theme={ButtonTheme.OUTLINE_RED}

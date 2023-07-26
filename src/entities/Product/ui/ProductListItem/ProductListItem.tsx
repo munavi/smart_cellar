@@ -5,9 +5,13 @@ import { Counter } from 'entities/Counter';
 import { Product } from 'entities/Product';
 import { useTranslation } from 'react-i18next';
 import { IdConverter } from 'shared/ui/IdConverter/IdConverter';
-import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import {
+    deleteProductById,
+} from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { EditProductModal } from 'entities/Product/ui/ProductListItem/EditProductModal/EditProductModal';
+import {
+    EditProductModal,
+} from 'entities/Product/ui/ProductListItem/EditProductModal/EditProductModal';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import cls from './ProductListItem.module.scss';
 
@@ -31,21 +35,9 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
     const handleDeleteProduct = useCallback((productId:number) => {
         dispatch(deleteProductById(productId));
     }, [dispatch]);
-    const handleEditProduct = useCallback((productId) => {
-        // Ваша логика редактирования продукта по productId
-        // Например, можно открыть модальное окно для редактирования продукта
-        // или перенаправить пользователя на страницу редактирования продукта
-    }, []);
 
     return (
         <ListItem className={cls.container}>
-            <EditProductModal
-                isOpen={isModal}
-                onClose={onCloseModal}
-                product={product}
-                productId={product.id}
-                className={cls.item}
-            />
             <Button
                 size="small"
                 variant="contained"
@@ -53,6 +45,13 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
                 className={cls.item}
             >
                 <EditOutlinedIcon />
+                <EditProductModal
+                    isOpen={isModal}
+                    onClose={onCloseModal}
+                    productId={product.id}
+                    className={cls.item}
+                />
+
             </Button>
             <ListItemText className={cls.item}>
                 {product.name}
@@ -72,7 +71,6 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
                 content="StorageLocation"
                 className={cls.item}
             />
-            {/* eslint-disable-next-line i18next/no-literal-string */}
             <ListItemText className={cls.item}>
                 {product.date}
             </ListItemText>
