@@ -1,17 +1,14 @@
 import React, { useCallback, useState } from 'react';
-import {
-    ListItem, ListItemText, Button,
-} from '@mui/material';
+import { Button, ListItem, ListItemText } from '@mui/material';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Counter } from 'entities/Counter';
 import { Product } from 'entities/Product';
 import { useTranslation } from 'react-i18next';
 import { IdConverter } from 'shared/ui/IdConverter/IdConverter';
-import {
-    deleteProductById,
-} from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { EditProductModal } from 'entities/Product/ui/ProductListItem/EditProductModal/EditProductModal';
+import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import cls from './ProductListItem.module.scss';
 
 interface ProductListItemProps{
@@ -21,14 +18,16 @@ interface ProductListItemProps{
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
     const [isModal, setIsModal] = useState(false);
     const onShowModal = useCallback(() => {
+        dispatch(productDetailsActions.fillEditModal(product.id));
         setIsModal(true);
-    }, []);
+    }, [dispatch, product.id]);
     const onCloseModal = useCallback(() => {
         setIsModal(false);
     }, []);
-    const dispatch = useAppDispatch();
+
     const handleDeleteProduct = useCallback((productId:number) => {
         dispatch(deleteProductById(productId));
     }, [dispatch]);

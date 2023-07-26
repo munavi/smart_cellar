@@ -12,6 +12,8 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import { Product } from 'entities/Product';
 import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
+import { useSelector } from 'react-redux';
+import { getProductDetailsForm } from 'entities/Product/model/selectors/productDetails';
 import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
@@ -28,71 +30,66 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
         isOpen, onClose, className, product, productId,
     } = props;
     const dispatch = useAppDispatch();
+    const productForm = useSelector((getProductDetailsForm));
 
     const onChangeItemName = useCallback((name: string) => {
-        dispatch(productDetailsActions.updateProductById({
-            productId,
+        dispatch(productDetailsActions.editProduct({
             updatedData: {
                 name,
             },
         }));
-        dispatch(updateProductById(productId));
-    }, [dispatch, productId]);
+    }, [dispatch]);
 
     const onChangeItemQuantity = useCallback((quantity: string) => {
         const parsedQuantity = parseInt(quantity, 10);
 
-        dispatch(productDetailsActions.updateProductById({
-            productId,
+        dispatch(productDetailsActions.editProduct({
             updatedData: {
                 quantity: !Number.isNaN(parsedQuantity) ? parsedQuantity : undefined,
             },
         }));
-        dispatch(updateProductById(productId));
-    }, [dispatch, productId]);
+    }, [dispatch]);
 
     const onChangeDate = useCallback((dateString: string) => {
         const date = new Date(dateString);
 
         if (!Number.isNaN(date.getTime())) {
-            dispatch(productDetailsActions.updateProductById({
-                productId,
+            dispatch(productDetailsActions.editProduct({
                 updatedData: {
                     date: date.toISOString(),
                 },
             }));
-            dispatch(updateProductById(productId));
         }
-    }, [dispatch, productId]);
+    }, [dispatch]);
 
     const onChangeCategory = useCallback((categoryId: number) => {
-        dispatch(productDetailsActions.updateProductById({
-            productId,
+        dispatch(productDetailsActions.editProduct({
             updatedData: {
                 categoryId,
             },
         }));
-        dispatch(updateProductById(productId));
-    }, [dispatch, productId]);
+    }, [dispatch]);
 
     const onChangeStorageLocation = useCallback((storageLocationId: number) => {
-        dispatch(productDetailsActions.updateProductById({
-            productId,
+        dispatch(productDetailsActions.editProduct({
             updatedData: {
                 storageLocationId,
             },
         }));
-        dispatch(updateProductById(productId));
-    }, [dispatch, productId]);
+    }, [dispatch]);
 
     const onSave = useCallback(() => {
+        const updatedProductForm = productForm || {} as Partial<Product>;
+        dispatch(productDetailsActions.updateProductById({
+            productId,
+            updatedData:
+                updatedProductForm,
+        }));
         dispatch(updateProductById(productId));
         onClose();
-        // dispatch(addNewProductActions.cancelEdit());
-    }, [dispatch, onClose, productId]);
+    }, [dispatch, onClose, productForm, productId]);
 
     const onCancel = useCallback(() => {
-        // dispatch(addNewProductActions.cancelEdit());
         onClose();
     }, [onClose]);
 
@@ -111,7 +108,7 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                 <Input
                     placeholder="Item name"
                     onChange={onChangeItemName}
-                    value={product?.name || ''}
+                    value={productForm?.name || ''}
                 />
                 <Text
                     theme={TextTheme.PRIMARY}
@@ -121,19 +118,19 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                 <Input
                     placeholder="Item quantity"
                     onChange={onChangeItemQuantity}
-                    value={product?.quantity || ''}
+                    value={productForm?.quantity || ''}
                 />
                 <Text
                     theme={TextTheme.PRIMARY}
                     title={t('change a date')}
                     align={TextAlign.CENTER}
                 />
-                <DatePicker onChange={onChangeDate} value={product?.date || ''} />
+                <DatePicker onChange={onChangeDate} value={productForm?.date || ''} />
                 <StorageLocationSelect
-                    value={product?.storageLocationId}
+                    value={productForm?.storageLocationId}
                     onChange={onChangeStorageLocation}
                 />
-                <CategorySelect value={product?.categoryId} onChange={onChangeCategory} />
+                <CategorySelect value={productForm?.categoryId} onChange={onChangeCategory} />
                 <Button
                     className={cls.editBtn}
                     theme={ButtonTheme.OUTLINE_RED}

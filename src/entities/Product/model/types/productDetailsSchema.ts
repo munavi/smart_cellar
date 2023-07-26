@@ -4,5 +4,6 @@ export interface ProductDetailsSchema {
     isLoading: boolean;
     error?: string;
     data?: Product[];
-    // form?: Product[];
+    productForm?: Partial<Product>;
+    productData?: Partial<Product>;
 }

@@ -19,19 +19,28 @@ const initialState: ProductDetailsSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
+    productForm: undefined,
+    productData: undefined,
 };
 
 export const productDetailsSlice = createSlice({
     name: 'productDetails',
     initialState,
     reducers: {
-        cancelEdit: (state) => {
-
+        fillEditModal: (
+            state,
+            action: PayloadAction<number>,
+        ) => {
+            const productId = action.payload;
+            if (state.data) {
+                state.productData = state.data.find((product) => product.id === productId);
+                state.productForm = state.productData;
+            }
         },
         updateProductById: (
             state,
             action: PayloadAction<{ productId: number,
-                updatedData: Partial<Product> }>,
+                updatedData: Partial<Product>}>,
         ) => {
             const { productId, updatedData } = action.payload;
             if (state.data) {
@@ -57,6 +66,19 @@ export const productDetailsSlice = createSlice({
             if (state.data) {
                 const newProduct = action.payload;
                 state.data.push(newProduct);
+            }
+        },
+        editProduct: (
+            state,
+            action: PayloadAction<{
+                updatedData: Partial<Product> }>,
+        ) => {
+            const { updatedData } = action.payload;
+            if (state.productForm) {
+                state.productForm = {
+                    ...state.productForm,
+                    ...updatedData,
+                };
             }
         },
     },
