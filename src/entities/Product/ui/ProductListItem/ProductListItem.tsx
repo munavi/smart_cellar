@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
     ListItem, ListItemText, Button,
 } from '@mui/material';
@@ -7,24 +7,35 @@ import { Counter } from 'entities/Counter';
 import { Product } from 'entities/Product';
 import { useTranslation } from 'react-i18next';
 import { IdConverter } from 'shared/ui/IdConverter/IdConverter';
+import {
+    deleteProductById,
+} from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './ProductListItem.module.scss';
 
 interface ProductListItemProps{
         product: Product;
-        onDelete: (productId: number) => void;
-        onEdit: (productId: number) => void;
 
 }
 
-export const ProductListItem = ({ product, onDelete, onEdit }: ProductListItemProps) => {
+export const ProductListItem = ({ product }: ProductListItemProps) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+    const handleDeleteProduct = useCallback((productId:number) => {
+        dispatch(deleteProductById(productId));
+    }, [dispatch]);
+    const handleEditProduct = useCallback((productId) => {
+        // Ваша логика редактирования продукта по productId
+        // Например, можно открыть модальное окно для редактирования продукта
+        // или перенаправить пользователя на страницу редактирования продукта
+    }, []);
 
     return (
         <ListItem className={cls.container}>
             <Button
                 size="small"
                 variant="contained"
-                onClick={() => onEdit(product.id)}
+                onClick={() => handleEditProduct(product.id)}
                 className={cls.item}
             >
                 <EditOutlinedIcon />
@@ -55,7 +66,7 @@ export const ProductListItem = ({ product, onDelete, onEdit }: ProductListItemPr
                 size="small"
                 color="error"
                 variant="contained"
-                onClick={() => onDelete(product.id)}
+                onClick={() => handleDeleteProduct(product.id)}
                 className={cls.item}
             >
                 {t('DELETE')}

@@ -12,14 +12,15 @@ import { StorageLocationSelect } from 'entities/StorageLocation';
 import { useSelector } from 'react-redux';
 import { getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchProductsByUserId } from 'entities/Product/model/services/fetchProductsByUserId/fetchProductsByUserId';
+import {
+    fetchProductsByUserId,
+} from 'entities/Product/model/services/fetchProductsByUserId/fetchProductsByUserId';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader, ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
-import {
-    deleteProductById,
-} from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { Input } from 'shared/ui/Input/Input';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
 import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
@@ -51,10 +52,6 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
         dispatch(fetchProductsByUserId());
     });
 
-    const handleDeleteProduct = useCallback((productId:number) => {
-        dispatch(deleteProductById(productId));
-    }, [dispatch]);
-
     const onChangeItemName = useCallback((name?: string) => {
         dispatch(addNewProductActions.updateNewProduct({ name }));
     }, [dispatch]);
@@ -85,16 +82,6 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
         dispatch(addNewProductActions.cancelEdit());
         onCloseModal();
     }, [dispatch, onCloseModal]);
-
-    const handleEditProduct = useCallback((productId) => {
-        // Ваша логика редактирования продукта по productId
-        // Например, можно открыть модальное окно для редактирования продукта
-        // или перенаправить пользователя на страницу редактирования продукта
-    }, []);
-
-    // Array item should be have a such structure
-    // {name: string, count: number, location: Enum value as string, date: string}
-    // Product category shoul be use as a filter option
 
     return (
 
@@ -161,8 +148,6 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                                 <ProductListItem
                                     key={product.id}
                                     product={product}
-                                    onDelete={handleDeleteProduct} // Замените handleDeleteProduct на вашу функцию удаления продукта
-                                    onEdit={handleEditProduct} // Замените handleEditProduct на вашу функцию редактирования продукта
                                 />
                             ))}
                         </Stack>
