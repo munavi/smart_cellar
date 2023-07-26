@@ -2,16 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
 import { useSelector } from 'react-redux';
-import {
-    getStorageLocations,
-} from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
-import {
-    DynamicModuleLoader, ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
-import {
-    storageLocationsReducer,
-} from 'entities/StorageLocation/model/slice/storageLocationsSlice';
+import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './IdConverter.module.scss';
 
 interface IdConverterProps {
@@ -20,10 +11,6 @@ interface IdConverterProps {
     content?: string;
 
 }
-const reducers: ReducersList = {
-    categories: categoriesReducer,
-    storageLocations: storageLocationsReducer,
-};
 
 export const IdConverter = (props: IdConverterProps) => {
     const { t } = useTranslation();
@@ -48,11 +35,10 @@ export const IdConverter = (props: IdConverterProps) => {
     }
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <div className={classNames(cls.IdConverter, {}, [className])}>
-                {name}
-            </div>
-        </DynamicModuleLoader>
+
+        <div className={classNames(cls.IdConverter, {}, [className])}>
+            {name}
+        </div>
 
     );
 };

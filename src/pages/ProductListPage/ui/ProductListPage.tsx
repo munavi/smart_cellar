@@ -25,6 +25,8 @@ import { Input } from 'shared/ui/Input/Input';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
 import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
 import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
+import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
+import { storageLocationsReducer } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -33,6 +35,8 @@ interface ItemsPageProps {
 
 const reducers: ReducersList = {
     productDetails: productDetailsReducer,
+    categories: categoriesReducer,
+    storageLocations: storageLocationsReducer,
 };
 
 const ProductListPage = ({ className }: ItemsPageProps) => {
@@ -84,58 +88,58 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     }, [dispatch, onCloseModal]);
 
     return (
-
-        <div className={classNames(cls.ItemsPage, {}, [className])}>
-            {t('Itemspage')}
-            <AddNewProduct onShowModal={onShowModal} />
-            <Modal
-                isOpen={isModal}
-                onClose={onCloseModal}
-            >
-                {' '}
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item name')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder="Item name"
-                    onChange={onChangeItemName}
-                    value={newProductData?.name || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item Quantity')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder="Item quantity"
-                    onChange={onChangeItemQuantity}
-                    value={newProductData?.quantity || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('change a date')}
-                    align={TextAlign.CENTER}
-                />
-                <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
-                <StorageLocationSelect onChange={onChangeStorageLocation} />
-                <CategorySelect onChange={onChangeCategory} />
-                <Button
-                    className={cls.editBtn}
-                    theme={ButtonTheme.OUTLINE_RED}
-                    onClick={onCancel}
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+            <div className={classNames(cls.ItemsPage, {}, [className])}>
+                {t('Itemspage')}
+                <AddNewProduct onShowModal={onShowModal} />
+                <Modal
+                    isOpen={isModal}
+                    onClose={onCloseModal}
                 >
-                    CANCEL
-                </Button>
-                <Button
-                    onClick={onSave}
-                >
-                    SAVE
-                </Button>
+                    {' '}
+                    <Text
+                        theme={TextTheme.PRIMARY}
+                        title={t('Item name')}
+                        align={TextAlign.CENTER}
+                    />
+                    <Input
+                        placeholder="Item name"
+                        onChange={onChangeItemName}
+                        value={newProductData?.name || ''}
+                    />
+                    <Text
+                        theme={TextTheme.PRIMARY}
+                        title={t('Item Quantity')}
+                        align={TextAlign.CENTER}
+                    />
+                    <Input
+                        placeholder="Item quantity"
+                        onChange={onChangeItemQuantity}
+                        value={newProductData?.quantity || ''}
+                    />
+                    <Text
+                        theme={TextTheme.PRIMARY}
+                        title={t('change a date')}
+                        align={TextAlign.CENTER}
+                    />
+                    <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
+                    <StorageLocationSelect onChange={onChangeStorageLocation} />
+                    <CategorySelect onChange={onChangeCategory} />
+                    <Button
+                        className={cls.editBtn}
+                        theme={ButtonTheme.OUTLINE_RED}
+                        onClick={onCancel}
+                    >
+                        CANCEL
+                    </Button>
+                    <Button
+                        onClick={onSave}
+                    >
+                        SAVE
+                    </Button>
 
-            </Modal>
-            <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+                </Modal>
+
                 {
                     products && products.length > 0 && (
                         <Stack
@@ -153,8 +157,8 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                         </Stack>
                     )
                 }
-            </DynamicModuleLoader>
-        </div>
+            </div>
+        </DynamicModuleLoader>
     );
 };
 

@@ -43,7 +43,7 @@ export const CountrySelect = memo(({
     }, [onChange]);
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
             <Select
                 className={classNames('', {}, [className])}
                 label={t('Choose a country')}
