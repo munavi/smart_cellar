@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
     ListItem, ListItemText, Button,
 } from '@mui/material';
@@ -11,6 +11,7 @@ import {
     deleteProductById,
 } from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { EditProductModal } from 'entities/Product/ui/ProductListItem/EditProductModal/EditProductModal';
 import cls from './ProductListItem.module.scss';
 
 interface ProductListItemProps{
@@ -20,6 +21,13 @@ interface ProductListItemProps{
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
     const { t } = useTranslation();
+    const [isModal, setIsModal] = useState(false);
+    const onShowModal = useCallback(() => {
+        setIsModal(true);
+    }, []);
+    const onCloseModal = useCallback(() => {
+        setIsModal(false);
+    }, []);
     const dispatch = useAppDispatch();
     const handleDeleteProduct = useCallback((productId:number) => {
         dispatch(deleteProductById(productId));
@@ -32,10 +40,17 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
 
     return (
         <ListItem className={cls.container}>
+            <EditProductModal
+                isOpen={isModal}
+                onClose={onCloseModal}
+                product={product}
+                productId={product.id}
+                className={cls.item}
+            />
             <Button
                 size="small"
                 variant="contained"
-                onClick={() => handleEditProduct(product.id)}
+                onClick={onShowModal}
                 className={cls.item}
             >
                 <EditOutlinedIcon />

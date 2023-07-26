@@ -25,6 +25,9 @@ export const productDetailsSlice = createSlice({
     name: 'productDetails',
     initialState,
     reducers: {
+        cancelEdit: (state) => {
+
+        },
         updateProductById: (
             state,
             action: PayloadAction<{ productId: number,
