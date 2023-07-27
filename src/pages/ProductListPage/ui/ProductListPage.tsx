@@ -10,7 +10,7 @@ import { AddNewProduct } from 'features/addNewProduct';
 import { CategorySelect } from 'entities/Category';
 import { StorageLocationSelect } from 'entities/StorageLocation';
 import { useSelector } from 'react-redux';
-import { getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
+import { getDisplayProducts, getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     fetchProductsByUserId,
@@ -19,7 +19,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
     DynamicModuleLoader, ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
+import { productDetailsActions, productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
 import { Input } from 'shared/ui/Input/Input';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
@@ -29,6 +29,7 @@ import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice
 import {
     storageLocationsReducer,
 } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
+import { FilterBar, FilterBarName } from 'features/filterProduct';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -44,9 +45,10 @@ const reducers: ReducersList = {
 
 const ProductListPage = ({ className }: ItemsPageProps) => {
     const { t } = useTranslation();
-    const products = useSelector(getProductDetailsData);
+    const products = useSelector(getDisplayProducts);
     const newProductData = useSelector(getAddNewProductData);
     const dispatch = useAppDispatch();
+    const [filteredValue, setFilteredValue] = useState<string>('');
     const [isModal, setIsModal] = useState(false);
     const onShowModal = useCallback(() => {
         setIsModal(true);
@@ -58,6 +60,15 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     useInitialEffect(() => {
         dispatch(fetchProductsByUserId());
     });
+
+    const onFilterByName = useCallback((name?: string) => {
+        dispatch(productDetailsActions.filterDisplayForm({ name }));
+    }, [dispatch]);
+
+    const handleFilterChange = (name: string) => {
+        setFilteredValue(name);
+        onFilterByName(name);
+    };
 
     const onChangeItemName = useCallback((name?: string) => {
         dispatch(addNewProductActions.updateNewProduct({ name }));
@@ -93,7 +104,7 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ItemsPage, {}, [className])}>
-                {t('Itemspage')}
+                <FilterBar onFilterChangeName={handleFilterChange} />
                 <AddNewProduct onShowModal={onShowModal} />
                 <Modal
                     isOpen={isModal}
@@ -126,8 +137,14 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                         align={TextAlign.CENTER}
                     />
                     <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
-                    <StorageLocationSelect value={newProductData?.storageLocationId} onChange={onChangeStorageLocation} />
-                    <CategorySelect value={newProductData?.categoryId} onChange={onChangeCategory} />
+                    <StorageLocationSelect
+                        value={newProductData?.storageLocationId}
+                        onChange={onChangeStorageLocation}
+                    />
+                    <CategorySelect
+                        value={newProductData?.categoryId}
+                        onChange={onChangeCategory}
+                    />
                     <Button
                         className={cls.editBtn}
                         theme={ButtonTheme.OUTLINE_RED}

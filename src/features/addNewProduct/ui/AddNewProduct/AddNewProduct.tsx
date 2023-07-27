@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, { memo } from 'react';
-import { Fab, ListItem, ListItemText } from '@mui/material';
+import { Fab, ListItem } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import cls from './AddNewProduct.module.scss';
 
@@ -17,7 +17,6 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
     return (
         <div className={classNames(cls.AddNewProduct, {}, [className])}>
             <ListItem className={cls.addBtn}>
-                <ListItemText>{t('Items')}</ListItemText>
                 <Fab color="primary" aria-label="add" size="small" onClick={onShowModal}>
                     <AddIcon />
                 </Fab>

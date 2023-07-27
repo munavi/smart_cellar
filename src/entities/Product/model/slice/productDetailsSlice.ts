@@ -1,17 +1,9 @@
-import {
-    createSlice, PayloadAction,
-} from '@reduxjs/toolkit';
-import {
-    updateProductById,
-} from
-    'entities/Product/model/services/updateProductById/updateProductById';
-import {
-    deleteProductById,
-} from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
+import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
-import {
-    ProductDetailsSchema,
-} from '../types/productDetailsSchema';
+import { NewProduct } from 'features/addNewProduct';
+import { ProductDetailsSchema } from '../types/productDetailsSchema';
 import { fetchProductsByUserId } from '../services/fetchProductsByUserId/fetchProductsByUserId';
 import { Product } from '../types/product';
 
@@ -19,6 +11,7 @@ const initialState: ProductDetailsSchema = {
     isLoading: false,
     error: undefined,
     data: undefined,
+    form: undefined,
     productForm: undefined,
 };
 
@@ -79,6 +72,16 @@ export const productDetailsSlice = createSlice({
                 };
             }
         },
+        filterDisplayForm: (
+            state,
+            action: PayloadAction<Partial<Product>>,
+        ) => {
+            const updatedData = action.payload;
+            state.form = state.data;
+            if (updatedData.name && state.form) {
+                state.form = state.form.filter((product) => (product.name.toLowerCase().includes((updatedData.name || '').toLowerCase())));
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -92,6 +95,7 @@ export const productDetailsSlice = createSlice({
             ) => {
                 state.isLoading = false;
                 state.data = action.payload;
+                state.form = state.data;
             })
             .addCase(fetchProductsByUserId.rejected, (state, action) => {
                 state.isLoading = false;
@@ -107,14 +111,21 @@ export const productDetailsSlice = createSlice({
             ) => {
                 state.isLoading = false;
                 const updatedProduct = action.payload;
-                if (state.data) {
+                if (state.data && state.form) {
                     // eslint-disable-next-line max-len
                     const productIndex = state.data.findIndex((product) => product.id === updatedProduct.id);
                     if (productIndex !== -1) {
                         // eslint-disable-next-line max-len
                         state.data[productIndex] = { ...state.data[productIndex], ...updatedProduct };
                     }
+                    // eslint-disable-next-line max-len
+                    const formProductIndex = state.form.findIndex((product) => product.id === updatedProduct.id);
+                    if (formProductIndex !== -1) {
+                        // eslint-disable-next-line max-len
+                        state.form[formProductIndex] = { ...state.form[formProductIndex], ...updatedProduct };
+                    }
                 }
+                // state.form = state.data;
             })
             .addCase(updateProductById.rejected, (state, action) => {
                 state.isLoading = false;
@@ -133,6 +144,7 @@ export const productDetailsSlice = createSlice({
                 if (state.data) {
                     state.data = state.data.filter((product) => product.id !== deletedProductId);
                 }
+                state.form = state.data;
             })
             .addCase(deleteProductById.rejected, (state, action) => {
                 state.isLoading = false;
@@ -151,6 +163,7 @@ export const productDetailsSlice = createSlice({
                 if (state.data) {
                     state.data.push(newProduct);
                 }
+                state.form = state.data;
             })
             .addCase(addNewProduct.rejected, (state, action) => {
                 state.isLoading = false;
