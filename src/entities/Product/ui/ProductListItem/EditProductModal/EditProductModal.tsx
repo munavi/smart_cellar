@@ -94,6 +94,9 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
         onClose();
     }, [onClose]);
 
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div className={classNames(cls.EditProductModal, {}, [className])}>
             <Modal
@@ -128,10 +131,13 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                 />
                 <DatePicker onChange={onChangeDate} value={productForm?.date || ''} />
                 <StorageLocationSelect
-                    value={productForm?.storageLocationId}
+                    value={productForm?.storageLocationId || ''}
                     onChange={onChangeStorageLocation}
                 />
-                <CategorySelect value={productForm?.categoryId} onChange={onChangeCategory} />
+                <CategorySelect
+                    value={productForm?.categoryId}
+                    onChange={onChangeCategory}
+                />
                 <Button
                     className={cls.editBtn}
                     theme={ButtonTheme.OUTLINE_RED}

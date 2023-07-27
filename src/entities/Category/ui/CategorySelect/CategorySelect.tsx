@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Select } from 'shared/ui/Select/Select';
+import { CustomSelect } from 'shared/ui/Select/CustomSelect';
 import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -16,6 +16,7 @@ interface CategorySelectProps {
     value?: number;
     onChange?: (value: number) => void;
     readonly?: boolean;
+    zeroElement?: boolean;
 }
 
 const reducers: ReducersList = {
@@ -23,7 +24,7 @@ const reducers: ReducersList = {
 };
 
 export const CategorySelect = memo(({
-    className, value, onChange, readonly,
+    className, value, onChange, readonly, zeroElement,
 }: CategorySelectProps) => {
     const { t } = useTranslation();
 
@@ -43,15 +44,14 @@ export const CategorySelect = memo(({
     }, [onChange]);
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <Select
-                className={classNames('', {}, [className])}
-                label={t('Choose a category')}
-                options={options}
-                value={value?.toString()}
-                onChange={onChangeHandler}
-                readonly={readonly}
-            />
-        </DynamicModuleLoader>
+        <CustomSelect
+            className={classNames('', {}, [className])}
+            label={t('Choose a category')}
+            options={options}
+            value={value?.toString()}
+            onChange={onChangeHandler}
+            readonly={readonly}
+            zeroElement={zeroElement}
+        />
     );
 });

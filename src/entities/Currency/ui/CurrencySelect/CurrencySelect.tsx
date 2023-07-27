@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Select } from 'shared/ui/Select/Select';
+import { CustomSelect } from 'shared/ui/Select/CustomSelect';
 import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -44,7 +44,7 @@ export const CurrencySelect = memo(({
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <Select
+            <CustomSelect
                 className={classNames('', {}, [className])}
                 label={t('Choose a currency')}
                 options={options}

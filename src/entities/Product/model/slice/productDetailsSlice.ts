@@ -91,10 +91,10 @@ export const productDetailsSlice = createSlice({
                 // eslint-disable-next-line max-len
                 state.form = state.form.filter((product) => (product.categoryId === state.productFilter?.categoryId));
             }
-            // if (updatedData.storageLocationId !== 0 && state.form) {
-            //     // eslint-disable-next-line max-len
-            //     state.form = state.form.filter((product) => (product.storageLocationId === updatedData.storageLocationId));
-            // }
+            if (state.productFilter.storageLocationId && state.form) {
+                // eslint-disable-next-line max-len
+                state.form = state.form.filter((product) => (product.storageLocationId === state.productFilter?.storageLocationId));
+            }
         },
     },
     extraReducers: (builder) => {

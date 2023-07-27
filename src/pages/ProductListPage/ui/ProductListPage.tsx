@@ -138,7 +138,7 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                     />
                     <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
                     <StorageLocationSelect
-                        value={newProductData?.storageLocationId}
+                        value={newProductData?.storageLocationId || ''}
                         onChange={onChangeStorageLocation}
                     />
                     <CategorySelect
