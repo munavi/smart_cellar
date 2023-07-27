@@ -6,4 +6,5 @@ export interface ProductDetailsSchema {
     data?: Product[];
     form?: Product[];
     productForm?: Partial<Product>;
+    productFilter?: Partial<Product>;
 }

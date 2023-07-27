@@ -13,6 +13,7 @@ const initialState: ProductDetailsSchema = {
     data: undefined,
     form: undefined,
     productForm: undefined,
+    productFilter: undefined,
 };
 
 export const productDetailsSlice = createSlice({
@@ -78,9 +79,22 @@ export const productDetailsSlice = createSlice({
         ) => {
             const updatedData = action.payload;
             state.form = state.data;
-            if (updatedData.name && state.form) {
-                state.form = state.form.filter((product) => (product.name.toLowerCase().includes((updatedData.name || '').toLowerCase())));
+            state.productFilter = {
+                ...state.productFilter,
+                ...updatedData,
+            };
+            if (state.productFilter.name && state.form) {
+                // eslint-disable-next-line max-len
+                state.form = state.form.filter((product) => (product.name.toLowerCase().includes((state.productFilter?.name || '').toLowerCase())));
             }
+            if (state.productFilter.categoryId && state.form) {
+                // eslint-disable-next-line max-len
+                state.form = state.form.filter((product) => (product.categoryId === state.productFilter?.categoryId));
+            }
+            // if (updatedData.storageLocationId !== 0 && state.form) {
+            //     // eslint-disable-next-line max-len
+            //     state.form = state.form.filter((product) => (product.storageLocationId === updatedData.storageLocationId));
+            // }
         },
     },
     extraReducers: (builder) => {
@@ -125,7 +139,6 @@ export const productDetailsSlice = createSlice({
                         state.form[formProductIndex] = { ...state.form[formProductIndex], ...updatedProduct };
                     }
                 }
-                // state.form = state.data;
             })
             .addCase(updateProductById.rejected, (state, action) => {
                 state.isLoading = false;
