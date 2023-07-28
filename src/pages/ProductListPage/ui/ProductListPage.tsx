@@ -30,6 +30,12 @@ import {
     storageLocationsReducer,
 } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
 import { FilterBar, FilterBarName } from 'features/filterProduct';
+import { fetchCategories } from 'entities/Category/model/services/fetchCategories/fetchCategories';
+import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
+import {
+    fetchStorageLocations,
+} from 'entities/StorageLocation/model/services/fetchStorageLocations/fetchStorageLocations';
+import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -37,14 +43,16 @@ interface ItemsPageProps {
 }
 
 const reducers: ReducersList = {
-    productDetails: productDetailsReducer,
     categories: categoriesReducer,
     storageLocations: storageLocationsReducer,
+    productDetails: productDetailsReducer,
     newProduct: addNewProductReducer,
 };
 
 const ProductListPage = ({ className }: ItemsPageProps) => {
     const { t } = useTranslation();
+    const categories = useSelector(getCategories);
+    const storageLocations = useSelector(getStorageLocations);
     const products = useSelector(getDisplayProducts);
     const newProductData = useSelector(getAddNewProductData);
     const dispatch = useAppDispatch();
@@ -58,6 +66,8 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     }, []);
 
     useInitialEffect(() => {
+        dispatch(fetchCategories());
+        dispatch(fetchStorageLocations());
         dispatch(fetchProductsByUserId());
     });
 
@@ -104,7 +114,10 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ItemsPage, {}, [className])}>
-                <FilterBar onFilterChangeName={handleFilterChange} />
+                <FilterBar
+                    onFilterChangeName={handleFilterChange}
+                    categories={categories || []}
+                />
                 <AddNewProduct onShowModal={onShowModal} />
                 <Modal
                     isOpen={isModal}
@@ -138,12 +151,14 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                     />
                     <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
                     <StorageLocationSelect
-                        value={newProductData?.storageLocationId || ''}
+                        value={newProductData?.storageLocationId}
                         onChange={onChangeStorageLocation}
+                        storageLocations={storageLocations || []}
                     />
                     <CategorySelect
                         value={newProductData?.categoryId}
                         onChange={onChangeCategory}
+                        categories={categories || []}
                     />
                     <Button
                         className={cls.editBtn}

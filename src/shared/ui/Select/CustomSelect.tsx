@@ -56,7 +56,8 @@ export const CustomSelect = memo((props: SelectProps) => {
                     labelId="demo-simple-select-helper-label"
                     id="demo-simple-select-helper"
                     disabled={readonly}
-                    value={selectedValue}
+                    defaultValue={zeroElement ? selectedValue : undefined}
+                    value={zeroElement ? undefined : selectedValue}
                     onChange={onChangeHandler}
                 >
                     {zeroElement && (

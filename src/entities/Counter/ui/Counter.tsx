@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonGroup } from '@mui/material';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -7,6 +7,7 @@ import { productDetailsActions } from 'entities/Product/model/slice/productDetai
 import {
     updateProductById,
 } from 'entities/Product/model/services/updateProductById/updateProductById';
+import { getCounterValue } from 'entities/Counter/model/selectors/getCounterValue/getCounterValue';
 
 interface CounterProps {
     className?: string;
@@ -29,13 +30,15 @@ export const Counter = ({ className, quantity, productId }: CounterProps) => {
     };
 
     const decrement = () => {
-        dispatch(productDetailsActions.updateProductById({
-            productId,
-            updatedData: {
-                quantity: quantity - 1,
-            },
-        }));
-        dispatch(updateProductById(productId));
+        if (quantity > 0) {
+            dispatch(productDetailsActions.updateProductById({
+                productId,
+                updatedData: {
+                    quantity: quantity - 1,
+                },
+            }));
+            dispatch(updateProductById(productId));
+        }
     };
 
     return (

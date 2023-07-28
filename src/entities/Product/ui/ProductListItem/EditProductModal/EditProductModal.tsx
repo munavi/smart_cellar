@@ -16,6 +16,8 @@ import {
 } from 'entities/Product/model/services/updateProductById/updateProductById';
 import { useSelector } from 'react-redux';
 import { getProductDetailsForm } from 'entities/Product/model/selectors/productDetails';
+import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
+import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
@@ -33,6 +35,8 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
     const dispatch = useAppDispatch();
     const productForm = useSelector((getProductDetailsForm));
 
+    const categories = useSelector(getCategories);
+    const storageLocations = useSelector(getStorageLocations);
     const onChangeItemName = useCallback((name: string) => {
         dispatch(productDetailsActions.editProduct({
             updatedData: {
@@ -131,10 +135,12 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                 />
                 <DatePicker onChange={onChangeDate} value={productForm?.date || ''} />
                 <StorageLocationSelect
-                    value={productForm?.storageLocationId || ''}
+                    value={productForm?.storageLocationId}
                     onChange={onChangeStorageLocation}
+                    storageLocations={storageLocations || []}
                 />
                 <CategorySelect
+                    categories={categories || []}
                     value={productForm?.categoryId}
                     onChange={onChangeCategory}
                 />
