@@ -13,6 +13,8 @@ import {
     EditProductModal,
 } from 'entities/Product/ui/ProductListItem/EditProductModal/EditProductModal';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
+import { useSelector } from 'react-redux';
+import { getProductFilter } from 'entities/Product/model/selectors/productDetails';
 import cls from './ProductListItem.module.scss';
 
 interface ProductListItemProps{
@@ -23,6 +25,7 @@ interface ProductListItemProps{
 export const ProductListItem = ({ product }: ProductListItemProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const filterState = useSelector(getProductFilter);
     const [isModal, setIsModal] = useState(false);
     const onShowModal = useCallback(() => {
         dispatch(productDetailsActions.fillEditModal(product.id));
@@ -32,9 +35,12 @@ export const ProductListItem = ({ product }: ProductListItemProps) => {
         setIsModal(false);
     }, []);
 
-    const handleDeleteProduct = useCallback((productId:number) => {
-        dispatch(deleteProductById(productId));
-    }, [dispatch]);
+    const handleDeleteProduct = useCallback(async (productId:number) => {
+        await dispatch(deleteProductById(productId));
+        if (filterState) {
+            dispatch(productDetailsActions.filterDisplayForm(filterState));
+        }
+    }, [dispatch, filterState]);
 
     return (
         <ListItem className={cls.container}>

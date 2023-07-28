@@ -158,7 +158,6 @@ export const productDetailsSlice = createSlice({
                     state.data = state.data.filter((product) => product.id !== deletedProductId);
                 }
                 state.form = state.data;
-                // state.productFilter = { name: '', categoryId: 0, storageLocationId: 0 };
             })
             .addCase(deleteProductById.rejected, (state, action) => {
                 state.isLoading = false;
