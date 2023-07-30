@@ -60,7 +60,7 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
     const categories = useSelector(getCategories);
     const storageLocations = useSelector(getStorageLocations);
     const products = useSelector(getDisplayProducts);
-    const newProductData = useSelector(getAddNewProductData);
+
     const dispatch = useAppDispatch();
     const [filteredValue, setFilteredValue] = useState<string>('');
     const [isModal, setIsModal] = useState(false);
@@ -86,37 +86,6 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
         onFilterByName(name);
     };
 
-    const onChangeItemName = useCallback((name?: string) => {
-        dispatch(addNewProductActions.updateNewProduct({ name }));
-    }, [dispatch]);
-
-    const onChangeItemQuantity = useCallback((quantity?: string) => {
-        dispatch(addNewProductActions.updateNewProduct({ quantity }));
-    }, [dispatch]);
-
-    const onChangeDate = useCallback((date: string) => {
-        dispatch(addNewProductActions.updateNewProduct({ date }));
-    }, [dispatch]);
-
-    const onChangeCategory = useCallback((categoryId: number) => {
-        dispatch(addNewProductActions.updateNewProduct({ categoryId }));
-    }, [dispatch]);
-
-    const onChangeStorageLocation = useCallback((storageLocationId: number) => {
-        dispatch(addNewProductActions.updateNewProduct({ storageLocationId }));
-    }, [dispatch]);
-
-    const onSave = useCallback(() => {
-        dispatch(addNewProduct());
-        onCloseModal();
-        dispatch(addNewProductActions.cancelEdit());
-    }, [dispatch, onCloseModal]);
-
-    const onCancel = useCallback(() => {
-        dispatch(addNewProductActions.cancelEdit());
-        onCloseModal();
-    }, [dispatch, onCloseModal]);
-
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.ItemsPage, {}, [className])}>
@@ -125,63 +94,13 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                     categories={categories || []}
                     storageLocations={storageLocations || []}
                 />
-                <AddNewProduct onShowModal={onShowModal} />
-                <Modal
-                    isOpen={isModal}
-                    onClose={onCloseModal}
-                >
-                    {' '}
-                    <Text
-                        theme={TextTheme.PRIMARY}
-                        title={t('Item name')}
-                        align={TextAlign.CENTER}
-                    />
-                    <Input
-                        placeholder="Item name"
-                        onChange={onChangeItemName}
-                        value={newProductData?.name || ''}
-                    />
-                    <Text
-                        theme={TextTheme.PRIMARY}
-                        title={t('Item Quantity')}
-                        align={TextAlign.CENTER}
-                    />
-                    <Input
-                        placeholder="Item quantity"
-                        onChange={onChangeItemQuantity}
-                        value={newProductData?.quantity || ''}
-                    />
-                    <Text
-                        theme={TextTheme.PRIMARY}
-                        title={t('change a date')}
-                        align={TextAlign.CENTER}
-                    />
-                    <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
-                    <StorageLocationSelect
-                        value={newProductData?.storageLocationId}
-                        onChange={onChangeStorageLocation}
-                        storageLocations={storageLocations || []}
-                    />
-                    <CategorySelect
-                        value={newProductData?.categoryId}
-                        onChange={onChangeCategory}
-                        categories={categories || []}
-                    />
-                    <Button
-                        className={cls.editBtn}
-                        theme={ButtonTheme.OUTLINE_RED}
-                        onClick={onCancel}
-                    >
-                        CANCEL
-                    </Button>
-                    <Button
-                        onClick={onSave}
-                    >
-                        SAVE
-                    </Button>
-
-                </Modal>
-
+                <AddNewProduct
+                    onShowModal={onShowModal}
+                    isModal={isModal}
+                    onCloseModal={onCloseModal}
+                    categories={categories || []}
+                    storageLocations={storageLocations || []}
+                />
                 {
                     products && products.length > 0 && (
                         <Stack
