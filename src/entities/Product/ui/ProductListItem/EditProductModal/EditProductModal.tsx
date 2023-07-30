@@ -17,7 +17,9 @@ import {
 import { useSelector } from 'react-redux';
 import { getProductDetailsForm } from 'entities/Product/model/selectors/productDetails';
 import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
-import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
+import {
+    getStorageLocations,
+} from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
@@ -98,9 +100,6 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
         onClose();
     }, [onClose]);
 
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
     return (
         <div className={classNames(cls.EditProductModal, {}, [className])}>
             <Modal

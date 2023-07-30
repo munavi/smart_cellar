@@ -15,6 +15,7 @@ import { CountrySchema } from 'entities/Country/model/types/CountrySchema';
 import { CurrencySchema } from 'entities/Currency/model/types/CurrencySchema';
 import { CategorySchema } from 'entities/Category/model/types/CategorySchema';
 import { StorageLocationSchema } from 'entities/StorageLocation/model/types/StorageLocationSchema';
+import { ProductStatSchema } from 'entities/ProductStat';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -29,6 +30,7 @@ export interface StateSchema {
     currencies?: CurrencySchema;
     categories?: CategorySchema;
     storageLocations?: StorageLocationSchema;
+    productStat?: ProductStatSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
