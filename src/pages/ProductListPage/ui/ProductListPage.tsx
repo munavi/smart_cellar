@@ -10,7 +10,7 @@ import { AddNewProduct } from 'features/addNewProduct';
 import { CategorySelect } from 'entities/Category';
 import { StorageLocationSelect } from 'entities/StorageLocation';
 import { useSelector } from 'react-redux';
-import { getDisplayProducts, getProductDetailsData } from 'entities/Product/model/selectors/productDetails';
+import { getDisplayProducts } from 'entities/Product/model/selectors/productDetails';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
 import {
     fetchProductsByUserId,
@@ -19,23 +19,29 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
     DynamicModuleLoader, ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { productDetailsActions, productDetailsReducer } from 'entities/Product/model/slice/productDetailsSlice';
+import {
+    productDetailsActions, productDetailsReducer,
+} from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
 import { Input } from 'shared/ui/Input/Input';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
-import { addNewProductActions, addNewProductReducer } from 'features/addNewProduct/model/slices/newProductSlice';
+import {
+    addNewProductActions, addNewProductReducer,
+} from 'features/addNewProduct/model/slices/newProductSlice';
 import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
 import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
 import {
     storageLocationsReducer,
 } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
-import { FilterBar, FilterBarName } from 'features/filterProduct';
+import { FilterBar } from 'features/filterProduct';
 import { fetchCategories } from 'entities/Category/model/services/fetchCategories/fetchCategories';
 import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
 import {
     fetchStorageLocations,
 } from 'entities/StorageLocation/model/services/fetchStorageLocations/fetchStorageLocations';
-import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
+import {
+    getStorageLocations,
+} from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './ProductListPage.module.scss';
 
 interface ItemsPageProps {
@@ -117,6 +123,7 @@ const ProductListPage = ({ className }: ItemsPageProps) => {
                 <FilterBar
                     onFilterChangeName={handleFilterChange}
                     categories={categories || []}
+                    storageLocations={storageLocations || []}
                 />
                 <AddNewProduct onShowModal={onShowModal} />
                 <Modal

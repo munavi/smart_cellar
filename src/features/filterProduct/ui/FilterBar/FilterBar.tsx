@@ -5,27 +5,26 @@ import { FilterBarName } from 'features/filterProduct';
 import { Category, CategorySelect } from 'entities/Category';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
-import { StorageLocationSelect } from 'entities/StorageLocation';
-import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
-import { useSelector } from 'react-redux';
-import {
-    getStorageLocations,
-} from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
+import { StorageLocation, StorageLocationSelect } from 'entities/StorageLocation';
 import cls from './FilterBar.module.scss';
 
 interface FilterBarProps {
     className?: string,
     onFilterChangeName: (value: string) => void,
     categories: Category[],
+    storageLocations: StorageLocation[],
 
 }
 
 export const FilterBar = memo((props: FilterBarProps) => {
     const { t } = useTranslation();
-    const { className, onFilterChangeName, categories } = props;
+    const {
+        className,
+        onFilterChangeName,
+        categories,
+        storageLocations,
+    } = props;
     const dispatch = useAppDispatch();
-    // const categories = useSelector(getCategories);
-    const storageLocations = useSelector(getStorageLocations);
 
     const onChangeCategory = useCallback((categoryId: number) => {
         dispatch(productDetailsActions.filterDisplayForm({ categoryId }));
@@ -44,7 +43,7 @@ export const FilterBar = memo((props: FilterBarProps) => {
                 onChange={onChangeCategory}
             />
             <StorageLocationSelect
-                storageLocations={storageLocations || []}
+                storageLocations={storageLocations}
                 zeroElement
                 onChange={onChangeStorageLocation}
             />
