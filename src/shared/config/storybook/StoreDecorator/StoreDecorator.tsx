@@ -10,13 +10,15 @@ import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice
 import {
     storageLocationsReducer,
 } from 'entities/StorageLocation/model/slice/storageLocationsSlice';
+import { addNewProductReducer } from 'features/addNewProduct/model/slices/newProductSlice';
 
 const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
     profile: profileReducer,
     countries: countriesReducer,
     currencies: currenciesReducer,
-    product: productDetailsReducer,
+    productDetails: productDetailsReducer,
+    newProduct: addNewProductReducer,
     categories: categoriesReducer,
     storageLocations: storageLocationsReducer,
 };

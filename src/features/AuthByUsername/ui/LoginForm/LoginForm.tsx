@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useSelector } from 'react-redux';
-import { memo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from
     'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -14,7 +14,6 @@ import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLo
 import { getLoginError } from '../../model/selectors/getLoginError/getLoginError';
 import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { login } from '../../../../http/userAPI';
 import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
@@ -49,6 +48,12 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         }
     }, [onSuccess, dispatch, password, email]);
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            onLoginClick();
+        }
+    };
+
     return (
         <DynamicModuleLoader
             removeAfterUnmount
@@ -76,6 +81,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     placeholder={t('Input password')}
                     onChange={onChangePassword}
                     value={password}
+                    onKeyDown={handleKeyDown}
                 />
                 <Button
                     theme={ButtonTheme.OUTLINE}
