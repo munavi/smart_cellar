@@ -4,7 +4,7 @@ import { Counter } from './Counter';
 
 describe('Counter', () => {
     test('test render', () => {
-        componentRender(<Counter />, {
+        componentRender(<Counter quantity={10} productId={1} />, {
             initialState: { counter: { value: 10 } },
         });
         expect(screen.getByTestId('value-title')).toHaveTextContent('10');

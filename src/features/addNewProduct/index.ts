@@ -1,2 +1,3 @@
-export { ProductSchema } from './model/types/product';
+export { NewProduct } from './model/types/newProduct';
+export { NewProductSchema } from './model/types/NewProductSchema';
 export { AddCommentFormAsync as AddNewProduct } from './ui/AddNewProduct/AddNewProduct.async';

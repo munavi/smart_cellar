@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Select } from 'shared/ui/Select/Select';
+import { CustomSelect } from 'shared/ui/Select/CustomSelect';
 import { memo, useCallback, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -43,8 +43,8 @@ export const CountrySelect = memo(({
     }, [onChange]);
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-            <Select
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
+            <CustomSelect
                 className={classNames('', {}, [className])}
                 label={t('Choose a country')}
                 options={options}
