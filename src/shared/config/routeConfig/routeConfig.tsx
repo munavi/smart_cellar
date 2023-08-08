@@ -4,7 +4,6 @@ import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { ItemsPage } from 'pages/ProductListPage';
-import { ItemDetailsPage } from 'pages/ItemDetailsPage';
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
@@ -15,7 +14,6 @@ export enum AppRoutes {
     ABOUT = 'about',
     PROFILE = 'profile',
     ITEMS = 'items',
-    ITEM_DETAILS = 'item_details',
     // last
     NOT_FOUND = 'not_found',
 }
@@ -25,7 +23,6 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/main',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.ITEMS]: '/items',
-    [AppRoutes.ITEM_DETAILS]: '/items/', // +id
     // last
     [AppRoutes.NOT_FOUND]: '*',
 };
@@ -48,11 +45,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.ITEMS]: {
         path: RoutePath.items,
         element: <ItemsPage />,
-        authOnly: true,
-    },
-    [AppRoutes.ITEM_DETAILS]: {
-        path: `${RoutePath.item_details}:id`, // dynamic id
-        element: <ItemDetailsPage />,
         authOnly: true,
     },
     // last
