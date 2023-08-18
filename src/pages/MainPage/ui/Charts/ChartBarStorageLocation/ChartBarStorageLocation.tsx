@@ -1,32 +1,39 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useTranslation } from 'react-i18next';
-import { memo } from 'react';
-import { BarChart } from '@mui/x-charts';
+import React, { memo } from 'react';
+import {
+    Bar, BarChart, Tooltip, XAxis, YAxis,
+} from 'recharts';
+import classNames from 'classnames';
 import { ProductStat } from 'entities/ProductStat';
-import cls from './ChartBarStorageLocation.module.scss';
+import './ChartBarStorageLocation.module.scss';
 
 interface ChartBarStorageLocationProps {
-    className?: string,
-    chartData?: ProductStat[],
-
+    className?: string;
+    chartData?: ProductStat[];
 }
 
 export const ChartBarStorageLocation = memo((props: ChartBarStorageLocationProps) => {
-    const { t } = useTranslation();
     const { className, chartData } = props;
 
-    const seriesData = chartData?.map((item) => ({
-        data: [item.countProducts],
-        label: item.name,
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+    const seriesData = chartData?.map((item, index) => ({
+        name: item.name,
+        quantity: item.countProducts,
+        fill: COLORS[index % COLORS.length],
     })) || [];
 
     return (
-        <div className={classNames(cls.ChartBarStorageLocation, {}, [className])}>
+        <div className={classNames('ChartBarStorageLocation', {}, [className])}>
             <BarChart
-                series={seriesData}
-                width={900}
+                width={1100}
                 height={400}
-            />
+                data={seriesData}
+            >
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="quantity" fill="fill" />
+            </BarChart>
         </div>
     );
 });
