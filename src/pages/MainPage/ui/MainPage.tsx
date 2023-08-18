@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ChartBarStorageLocation } from 'pages/MainPage/ui/Charts/ChartBarStorageLocation/ChartBarStorageLocation';
+import {
+    ChartBarStorageLocation,
+} from 'pages/MainPage/ui/Charts/ChartBarStorageLocation/ChartBarStorageLocation';
 import { ChartPieCategory } from 'pages/MainPage/ui/Charts/ChartPieCategory/ChartPieCategory';
 import { OverviewCard } from 'pages/MainPage/ui/Charts/OverviewCard/OverviewCard';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -8,7 +10,9 @@ import cls from 'pages/MainPage/ui/MainPage.module.scss';
 import { Grid } from '@mui/material';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { fetchProductStat } from 'entities/ProductStat/model/services/fetchProductStat/fetchProductStat';
+import {
+    fetchProductStat,
+} from 'entities/ProductStat/model/services/fetchProductStat/fetchProductStat';
 import { useSelector } from 'react-redux';
 import {
     getCountCategories,
@@ -17,7 +21,9 @@ import {
     getDataByCategory,
     getDataByStorageLocation,
 } from 'entities/ProductStat/model/selectors/productStat';
-import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader, ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { productStatReducer } from 'entities/ProductStat/model/slice/productStatSlice';
 
 interface MainPageProps {
