@@ -1,4 +1,3 @@
-import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/authByEmail';
 import {
@@ -18,7 +17,6 @@ import { StorageLocationSchema } from 'entities/StorageLocation/model/types/Stor
 import { ProductStatSchema } from 'entities/ProductStat';
 
 export interface StateSchema {
-    counter: CounterSchema;
     user: UserSchema;
 
     // Async reducers
