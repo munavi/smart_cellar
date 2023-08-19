@@ -54,47 +54,54 @@ const MainPage = ({ className }: MainPageProps) => {
                 <div>
                     {t('Main page')}
                 </div>
-                <Grid
-                    container
-                    spacing={3}
-                >
+                <div className={cls.OverviewCardContainer}>
                     <Grid
-                        xs={12}
-                        sm={6}
-                        lg={3}
+                        container
+                        spacing={3}
+                        justifyContent="center"
                     >
-                        <OverviewCard
-                            label="All Products"
-                            sx={{ height: '100%' }}
-                            value={allProducts?.toString()}
-                        />
+                        <Grid
+                            xs={12}
+                            sm={6}
+                            lg={3}
+                            sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
+                        >
+                            <OverviewCard
+                                label="Products"
+                                sx={{ height: '100%' }}
+                                value={allProducts?.toString()}
+                            />
+                        </Grid>
+                        <Grid
+                            xs={12}
+                            sm={6}
+                            lg={3}
+                            sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
+                        >
+                            <OverviewCard
+                                label="Categories"
+                                sx={{ height: '100%' }}
+                                value={countByCategories?.toString()}
+                            />
+                        </Grid>
+                        <Grid
+                            xs={12}
+                            sm={6}
+                            lg={3}
+                            sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
+                        >
+                            <OverviewCard
+                                label="Locations"
+                                sx={{ height: '100%' }}
+                                value={countByStorageLocations?.toString()}
+                            />
+                        </Grid>
                     </Grid>
-                    <Grid
-                        xs={12}
-                        sm={6}
-                        lg={3}
-                    >
-                        <OverviewCard
-                            label="All Categories"
-                            sx={{ height: '100%' }}
-                            value={countByCategories?.toString()}
-                        />
-                    </Grid>
-                    <Grid
-                        xs={12}
-                        sm={6}
-                        lg={3}
-                    >
-                        <OverviewCard
-                            label="All Storage Locations"
-                            sx={{ height: '100%' }}
-                            value={countByStorageLocations?.toString()}
-                        />
-                    </Grid>
-                </Grid>
-
-                <div>
+                </div>
+                <div className={cls.ChartContainer}>
                     <ChartBarStorageLocation chartData={dataByStorageLocation} />
+                </div>
+                <div className={cls.ScaledChart}>
                     <ChartPieCategory chartData={dataByCategory} />
                 </div>
             </div>
