@@ -7,7 +7,6 @@ import { productDetailsActions } from 'entities/Product/model/slice/productDetai
 import {
     updateProductById,
 } from 'entities/Product/model/services/updateProductById/updateProductById';
-import { getCounterValue } from 'entities/Counter/model/selectors/getCounterValue/getCounterValue';
 
 interface CounterProps {
     className?: string;

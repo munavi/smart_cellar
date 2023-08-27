@@ -1,6 +1,5 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Counter } from './Counter';
 
 export default {
@@ -17,6 +16,3 @@ const Template: ComponentStory<typeof Counter> = (args) => <Counter {...args} />
 
 export const Primary = Template.bind({});
 Primary.args = {};
-Primary.decorators = [StoreDecorator({
-    counter: { value: 0 },
-})];

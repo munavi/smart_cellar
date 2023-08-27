@@ -1,6 +1,5 @@
-import { CounterSchema } from 'entities/Counter';
 import { UserSchema } from 'entities/User';
-import { LoginSchema } from 'features/AuthByUsername';
+import { LoginSchema } from 'features/authByEmail';
 import {
     AnyAction, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
@@ -15,9 +14,9 @@ import { CountrySchema } from 'entities/Country/model/types/CountrySchema';
 import { CurrencySchema } from 'entities/Currency/model/types/CurrencySchema';
 import { CategorySchema } from 'entities/Category/model/types/CategorySchema';
 import { StorageLocationSchema } from 'entities/StorageLocation/model/types/StorageLocationSchema';
+import { ProductStatSchema } from 'entities/ProductStat';
 
 export interface StateSchema {
-    counter: CounterSchema;
     user: UserSchema;
 
     // Async reducers
@@ -29,6 +28,7 @@ export interface StateSchema {
     currencies?: CurrencySchema;
     categories?: CategorySchema;
     storageLocations?: StorageLocationSchema;
+    productStat?: ProductStatSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

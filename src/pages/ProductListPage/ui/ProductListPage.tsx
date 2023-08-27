@@ -1,14 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Stack } from '@mui/material';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import React, { useCallback, useState } from 'react';
-import { Modal } from 'shared/ui/Modal/Modal';
-import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { AddNewProduct } from 'features/addNewProduct';
-import { CategorySelect } from 'entities/Category';
-import { StorageLocationSelect } from 'entities/StorageLocation';
 import { useSelector } from 'react-redux';
 import { getDisplayProducts } from 'entities/Product/model/selectors/productDetails';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
@@ -23,12 +17,7 @@ import {
     productDetailsActions, productDetailsReducer,
 } from 'entities/Product/model/slice/productDetailsSlice';
 import { ProductListItem } from 'entities/Product/ui/ProductListItem/ProductListItem';
-import { Input } from 'shared/ui/Input/Input';
-import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
-import {
-    addNewProductActions, addNewProductReducer,
-} from 'features/addNewProduct/model/slices/newProductSlice';
-import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
+import { addNewProductReducer } from 'features/addNewProduct/model/slices/newProductSlice';
 import { categoriesReducer } from 'entities/Category/model/slice/categoriesSlice';
 import {
     storageLocationsReducer,
