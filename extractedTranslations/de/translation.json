@@ -6,6 +6,7 @@
   "Authorisation form": "Authorisation form",
   "Cancel": "Cancel",
   "Categories": "Categories",
+  "Change a date": "Change a date",
   "Choose a category": "Choose a category",
   "Choose a country": "Choose a country",
   "Choose a currency": "Choose a currency",
@@ -35,5 +36,6 @@
   "Your firstname": "Your firstname",
   "Your lastname": "Your lastname",
   "change a date": "change a date",
+  "quantity": "quantity",
   "throw error": "throw error"
 }

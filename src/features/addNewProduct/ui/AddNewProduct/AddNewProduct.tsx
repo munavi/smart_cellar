@@ -27,7 +27,7 @@ export interface AddNewProductProps {
 }
 
 const AddNewProduct = memo((props: AddNewProductProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const {
         className,
         onShowModal,
@@ -89,7 +89,7 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                     align={TextAlign.CENTER}
                 />
                 <Input
-                    placeholder="Item name"
+                    placeholder={t('Item name')}
                     onChange={onChangeItemName}
                     value={newProductData?.name || ''}
                 />
@@ -99,13 +99,13 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                     align={TextAlign.CENTER}
                 />
                 <Input
-                    placeholder="Item quantity"
+                    placeholder={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={newProductData?.quantity || ''}
                 />
                 <Text
                     theme={TextTheme.PRIMARY}
-                    title={t('change a date')}
+                    title={t('Change a date')}
                     align={TextAlign.CENTER}
                 />
                 <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
@@ -124,12 +124,12 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                     theme={ButtonTheme.OUTLINE_RED}
                     onClick={onCancel}
                 >
-                    CANCEL
+                    {t("Cancel")}
                 </Button>
                 <Button
                     onClick={onSave}
                 >
-                    SAVE
+                    {t("Save")}
                 </Button>
 
             </Modal>

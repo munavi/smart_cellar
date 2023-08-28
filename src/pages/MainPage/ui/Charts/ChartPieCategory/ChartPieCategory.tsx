@@ -13,7 +13,7 @@ interface ChartPieCategoryProps {
 }
 
 export const ChartPieCategory = memo((props: ChartPieCategoryProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('select');
     const { className, chartData } = props;
 
     const seriesData = chartData?.map(
@@ -23,7 +23,7 @@ export const ChartPieCategory = memo((props: ChartPieCategoryProps) => {
                 countProducts: number }) => ({
             id: item.id,
             value: item.countProducts,
-            label: item.name,
+            label: t(item.name),
         }),
     ) || [];
 

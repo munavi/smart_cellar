@@ -33,7 +33,7 @@ export const CustomSelect = memo((props: SelectProps) => {
     } = props;
 
     const selectedValue = value || '';
-    const { t } = useTranslation('productlist');
+    const { t } = useTranslation('select');
 
     const onChangeHandler = (e: SelectChangeEvent) => {
         if (onChange) {

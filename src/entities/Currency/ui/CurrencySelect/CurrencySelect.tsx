@@ -25,7 +25,7 @@ const reducers: ReducersList = {
 export const CurrencySelect = memo(({
     className, value, onChange, readonly,
 }: CurrencySelectProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     const currencies = useSelector(getCurrencies);
     const dispatch = useAppDispatch();
