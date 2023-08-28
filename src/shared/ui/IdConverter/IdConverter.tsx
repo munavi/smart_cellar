@@ -13,7 +13,7 @@ interface IdConverterProps {
 }
 
 export const IdConverter = (props: IdConverterProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const { className, value, content } = props;
     let name;
     const categories = useSelector(getCategories);
@@ -37,7 +37,7 @@ export const IdConverter = (props: IdConverterProps) => {
     return (
 
         <div className={classNames(cls.IdConverter, {}, [className])}>
-            {name}
+            {t(name)}
         </div>
 
     );

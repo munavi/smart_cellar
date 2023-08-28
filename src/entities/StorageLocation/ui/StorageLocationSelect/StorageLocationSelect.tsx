@@ -16,7 +16,7 @@ interface StorageLocationSelectProps {
 export const StorageLocationSelect = memo(({
     className, value, onChange, readonly, zeroElement, storageLocations,
 }: StorageLocationSelectProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
 
     const options = useMemo(() => (storageLocations || []).map((storageLocation) => ({
         value: storageLocation.id,

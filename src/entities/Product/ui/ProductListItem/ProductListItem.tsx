@@ -23,7 +23,7 @@ interface ProductListItemProps{
 }
 
 export const ProductListItem = ({ product }: ProductListItemProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const dispatch = useAppDispatch();
     const filterState = useSelector(getProductFilter);
     const [isModal, setIsModal] = useState(false);
