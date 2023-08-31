@@ -17,7 +17,7 @@ export default (env: BuildEnv) => {
     const PORT = env.port || 3000;
     const isDev = mode === 'development';
     const apiUrl = env.apiUrl || 'https://smart-cellar-backend-db.onrender.com';
-    const reactAppApiUrl = env.reactAppApiUrl || 'https://smart-cellar-backend-db.onrender.com';
+    // const reactAppApiUrl = env.reactAppApiUrl || 'https://smart-cellar-backend-db.onrender.com';
 
     const config: webpack.Configuration = buildWebpackConfig({
         mode,
@@ -25,9 +25,10 @@ export default (env: BuildEnv) => {
         isDev,
         port: PORT,
         apiUrl,
-        reactAppApiUrl,
         project: 'frontend',
     });
 
     return config;
 };
+
+// reactAppApiUrl,
