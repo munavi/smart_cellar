@@ -45,7 +45,7 @@ const reducers: ReducersList = {
 };
 
 const ProductListPage = ({ className }: ItemsPageProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const categories = useSelector(getCategories);
     const storageLocations = useSelector(getStorageLocations);
     const products = useSelector(getDisplayProducts);

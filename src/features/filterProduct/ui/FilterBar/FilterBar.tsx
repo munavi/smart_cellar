@@ -17,7 +17,7 @@ interface FilterBarProps {
 }
 
 export const FilterBar = memo((props: FilterBarProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const {
         className,
         onFilterChangeName,

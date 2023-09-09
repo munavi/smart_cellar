@@ -6,6 +6,7 @@ import { LangSwitcher } from 'widgets/LangSwitcher';
 import cls from './Sidebar.module.scss';
 import { SidebarItemsList } from '../../model/items';
 import { SidebarItem } from '../SidebarItem/SiderbarItem';
+import { useTranslation } from 'react-i18next';
 
 interface SidebarProps {
     className?: string;
@@ -13,6 +14,8 @@ interface SidebarProps {
 
 export const Sidebar = memo(({ className }: SidebarProps) => {
     const [collapsed, setCollapsed] = useState(false);
+
+    const { t } = useTranslation();
 
     const onToggle = () => {
         setCollapsed((prev) => !prev);

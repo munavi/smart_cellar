@@ -67,7 +67,7 @@ const MainPage = ({ className }: MainPageProps) => {
                             sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
                         >
                             <OverviewCard
-                                label="Products"
+                                label={t('Products')}
                                 sx={{ height: '100%' }}
                                 value={allProducts?.toString()}
                             />
@@ -79,7 +79,7 @@ const MainPage = ({ className }: MainPageProps) => {
                             sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
                         >
                             <OverviewCard
-                                label="Categories"
+                                label={t('Categories')}
                                 sx={{ height: '100%' }}
                                 value={countByCategories?.toString()}
                             />
@@ -91,7 +91,7 @@ const MainPage = ({ className }: MainPageProps) => {
                             sx={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}
                         >
                             <OverviewCard
-                                label="Locations"
+                                label={t('Locations')}
                                 sx={{ height: '100%' }}
                                 value={countByStorageLocations?.toString()}
                             />

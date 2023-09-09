@@ -11,7 +11,7 @@ interface FilterBarProps {
 }
 
 export const FilterBarName = memo((props: FilterBarProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const { className, onFilterChange } = props;
     const [searchTerm, setSearchTerm] = useState<string>('');
 
@@ -25,7 +25,7 @@ export const FilterBarName = memo((props: FilterBarProps) => {
         <div className={classNames(cls.FilterBar, {}, [className])}>
             <TextField
                 id="outlined-basic"
-                label="Search by name"
+                label={t('Search by name')}
                 variant="outlined"
                 onChange={handleSearchChange}
             />

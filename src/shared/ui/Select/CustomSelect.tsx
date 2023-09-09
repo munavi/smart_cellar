@@ -4,6 +4,7 @@ import {
     FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
 import cls from './Select.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export interface SelectOption {
     value: number;
@@ -32,6 +33,7 @@ export const CustomSelect = memo((props: SelectProps) => {
     } = props;
 
     const selectedValue = value || '';
+    const { t } = useTranslation('select');
 
     const onChangeHandler = (e: SelectChangeEvent) => {
         if (onChange) {
@@ -41,9 +43,9 @@ export const CustomSelect = memo((props: SelectProps) => {
 
     const optionsList = useMemo(() => (options || []).map((opt) => (
         <MenuItem key={opt.value} value={opt.value}>
-            {opt.content}
+            {t(opt.content)}
         </MenuItem>
-    )), [options]);
+    )), [options, t]);
 
     const mods: Mods = {};
 
@@ -62,7 +64,7 @@ export const CustomSelect = memo((props: SelectProps) => {
                 >
                     {zeroElement && (
                         <MenuItem key="0" value="0">
-                            <em>All</em>
+                            <em>{t('All')}</em>
                         </MenuItem>
                     )}
                     {optionsList}

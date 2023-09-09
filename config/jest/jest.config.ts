@@ -20,7 +20,7 @@ export default {
         __IS_DEV__: true,
         __API__: '',
         __PROJECT__: 'jest',
-        __REACT_APP_API_URL__: '',
+        // __REACT_APP_API_URL__: '',
     },
 
     // Automatically clear mock calls, instances and results before every test

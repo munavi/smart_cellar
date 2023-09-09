@@ -16,7 +16,7 @@ interface OverviewCardProps {
 }
 
 export const OverviewCard = memo((props: OverviewCardProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('main');
     const {
         className, label, value, sx,
     } = props;
