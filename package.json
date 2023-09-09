@@ -126,8 +126,5 @@
         "preset": "iPhone 7"
       }
     }
-  },
-  "engines": {
-    "node": ">=14 <15"
   }
 }
