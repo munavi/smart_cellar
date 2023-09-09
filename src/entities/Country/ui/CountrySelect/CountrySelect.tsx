@@ -25,7 +25,7 @@ const reducers: ReducersList = {
 export const CountrySelect = memo(({
     className, value, onChange, readonly,
 }: CountrySelectProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('profile');
 
     const countries = useSelector(getCountries);
     const dispatch = useAppDispatch();

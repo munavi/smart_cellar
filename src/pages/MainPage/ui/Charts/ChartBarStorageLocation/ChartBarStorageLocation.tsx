@@ -5,6 +5,7 @@ import {
 import classNames from 'classnames';
 import { ProductStat } from 'entities/ProductStat';
 import './ChartBarStorageLocation.module.scss';
+import { useTranslation } from 'react-i18next';
 
 interface ChartBarStorageLocationProps {
     className?: string;
@@ -14,10 +15,12 @@ interface ChartBarStorageLocationProps {
 export const ChartBarStorageLocation = memo((props: ChartBarStorageLocationProps) => {
     const { className, chartData } = props;
 
+    const { t } = useTranslation('select');
+
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     const seriesData = chartData?.map((item, index) => ({
-        name: item.name,
+        name: t(item.name),
         quantity: item.countProducts,
         fill: COLORS[index % COLORS.length],
     })) || [];

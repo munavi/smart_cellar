@@ -2,7 +2,8 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { getCategories } from 'entities/Category/model/selectors/getCategories/getCategories';
 import { useSelector } from 'react-redux';
-import { getStorageLocations } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
+import { getStorageLocations }
+    from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import cls from './IdConverter.module.scss';
 
 interface IdConverterProps {
@@ -13,7 +14,7 @@ interface IdConverterProps {
 }
 
 export const IdConverter = (props: IdConverterProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('select');
     const { className, value, content } = props;
     let name;
     const categories = useSelector(getCategories);
@@ -37,7 +38,7 @@ export const IdConverter = (props: IdConverterProps) => {
     return (
 
         <div className={classNames(cls.IdConverter, {}, [className])}>
-            {name}
+            {t(name)}
         </div>
 
     );

@@ -1,0 +1,16 @@
+{
+  "An error occurred while loading the profile": "Beim Laden des Profils ist ein Fehler aufgetreten",
+  "Try refreshing the page": "Versuchen Sie, die Seite zu aktualisieren",
+  "Your firstname": "Ihr Vorname",
+  "Your lastname": "Ihr Nachname",
+  "Choose a country": "Wählen Sie ein Land aus",
+  "Choose a currency": "Wählen Sie eine Währung aus",
+  "Profile": "Profil",
+  "Edit": "Bearbeiten",
+  "Cancel": "Abbrechen",
+  "Save": "Speichern",
+  "Server error when saving": "Serverfehler beim Speichern",
+  "Incorrect region": "Falsche Region",
+  "No data specified": "Keine Daten angegeben",
+  "First and last names are required": "Vor- und Nachname sind erforderlich"
+}

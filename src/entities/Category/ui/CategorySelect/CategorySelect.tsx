@@ -17,7 +17,7 @@ export const CategorySelect = memo(({
     className, value, onChange, readonly, zeroElement,
     categories,
 }: CategorySelectProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
 
     const options = useMemo(() => (categories || []).map((category) => ({
         value: category.id,

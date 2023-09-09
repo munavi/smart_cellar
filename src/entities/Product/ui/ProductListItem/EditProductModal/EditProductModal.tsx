@@ -30,7 +30,7 @@ interface EditProductModalProps {
 }
 
 export const EditProductModal = memo((props: EditProductModalProps) => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('productlist');
     const {
         isOpen, onClose, className, productId,
     } = props;
@@ -113,7 +113,7 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     align={TextAlign.CENTER}
                 />
                 <Input
-                    placeholder="Item name"
+                    placeholder={t('Item name')}
                     onChange={onChangeItemName}
                     value={productForm?.name || ''}
                 />
@@ -123,7 +123,7 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     align={TextAlign.CENTER}
                 />
                 <Input
-                    placeholder="Item quantity"
+                    placeholder={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={productForm?.quantity || ''}
                 />
@@ -148,12 +148,12 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     theme={ButtonTheme.OUTLINE_RED}
                     onClick={onCancel}
                 >
-                    CANCEL
+                    {t("Cancel")}
                 </Button>
                 <Button
                     onClick={onSave}
                 >
-                    SAVE
+                    {t("Save")}
                 </Button>
 
             </Modal>
