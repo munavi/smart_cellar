@@ -1,3 +1,14 @@
 {
-  "About page": "Allgemeine Information"
+  "About page": "Übersicht",
+  "AppIntro": "Smart Cellar: Ihr Assistent im Kampf gegen die Verschwendung von Lebensmitteln und für einen nachhaltigen Lebensstil",
+  "AppDescription": "Smart Cellar ist eine innovative Web-Anwendung, die Ihnen hilft, Ihre Lebensmittelvorräte effizient zu verwalten und zu einer nachhaltigen Welt beizutragen. Kleine Schritte, die jeder von uns unternimmt, können zu einer globalen Veränderung beitragen, und Smart Cellar kann Ihnen dabei helfen.",
+  "WhyUseSmartCellar": "Warum Smart Cellar?",
+  "FoodWasteIssue": "Der jährliche Verlust von Lebensmitteln ist nicht nur ein ernstes Umweltproblem, sondern auch eine Verschwendung von Ressourcen und Geld. Millionen Tonnen Lebensmittel werden jedes Jahr weggeworfen, was sich negativ auf unseren Planet auswirkt. Smart Cellar wurde entwickelt, um Ihnen zu helfen, Ihre Lebensmittelvorräte leicht zu verwalten und Lebensmittelverschwendung zu reduzieren.",
+  "WhatSmartCellarOffers": "Was kann Smart Cellar für Sie tun?",
+  "TrackExpiryDates": "Verfolgen von Haltbarkeitsdaten: Machen Sie sich keine Sorgen mehr über abgelaufene Lebensmittel. Smart Cellar hilft Ihnen, das Haltbarkeitsdatum im Auge zu behalten und warnt Sie, wenn Sie Ihre Lebensmittel aufbrauchen müssen.",
+  "PlanYourShopping": "Planen Sie Ihren Einkauf: Organisieren Sie Ihre Einkäufe und planen Sie Ihre Einkaufsliste. Nutzen Sie Ihre Ressourcen effizient und reduzieren Sie unnötige Ausgaben.",
+  "ReduceCarbonFootprint": "Reduzieren Sie Ihren ökologischen Fußabdruck: Treffen Sie informierte Entscheidungen über Ihren Lebensmittelkonsum und reduzieren Sie Ihren Einfluss auf die Umwelt.",
+  "AccessibilityAndFree": "Allgemein zugänglich und kostenfrei",
+  "OpenSource": "Smart Cellar ist eine kostenlose Open-Source-Anwendung, die für jedermann zugänglich ist. Unterstützen Sie uns dabei, die Welt nachhaltiger und besser für uns alle zu gestalten.",
+  "JoinUsToday": "Machen Sie noch heute mit und machen Sie den ersten Schritt in Richtung intelligente Produktverantwortung und nachhaltiges Leben!"
 }

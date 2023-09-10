@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updateProductById } from 'entities/Product/model/services/updateProductById/updateProductById';
-import { deleteProductById } from 'entities/Product/model/services/deleteProductById/deleteProductById';
+import {
+    updateProductById,
+} from 'entities/Product/model/services/updateProductById/updateProductById';
+import {
+    deleteProductById,
+} from 'entities/Product/model/services/deleteProductById/deleteProductById';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
-import { NewProduct } from 'features/addNewProduct';
 import { ProductDetailsSchema } from '../types/productDetailsSchema';
 import { fetchProductsByUserId } from '../services/fetchProductsByUserId/fetchProductsByUserId';
 import { Product } from '../types/product';

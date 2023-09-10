@@ -1,3 +1,14 @@
 {
-  "About page": "About us"
+  "About page": "Overview",
+  "AppIntro": "Smart Cellar: Your Guide in the Fight Against Food Waste and for a Sustainable Lifestyle",
+  "AppDescription": "Smart Cellar is an innovative web application that helps you efficiently manage your food supplies and contribute to a sustainable world. Small steps taken by each of us can lead to global change, and Smart Cellar can assist you in this journey.",
+  "WhyUseSmartCellar": "Why Smart Cellar?",
+  "FoodWasteIssue": "The annual loss of food is not only a serious environmental problem but also a waste of resources and money. Millions of tons of food are discarded every year, negatively impacting our planet. Smart Cellar was developed to help you easily manage your food supplies and reduce food waste.",
+  "WhatSmartCellarOffers": "What Can Smart Cellar Do for You?",
+  "TrackExpiryDates": "Tracking Expiry Dates: No more worrying about expired food. Smart Cellar helps you keep an eye on expiration dates and alerts you when it's time to use your groceries.",
+  "PlanYourShopping": "Plan Your Shopping: Organize your purchases and plan your shopping list. Make efficient use of your resources and reduce unnecessary expenses.",
+  "ReduceCarbonFootprint": "Reduce Your Carbon Footprint: Make informed decisions about your food consumption and reduce your impact on the environment.",
+  "AccessibilityAndFree":"Accessible to All and Free of Charge",
+  "OpenSource": "Smart Cellar is a free and open-source application accessible to everyone. Join us in making the world more sustainable and better for all of us.",
+  "JoinUsToday": "Join us today and take the first step toward smart product responsibility and a sustainable life!"
 }

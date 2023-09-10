@@ -6,7 +6,49 @@ const AboutPage = () => {
 
     return (
         <div>
-            {t('About page')}
+            <div>
+                {t('About page')}
+            </div>
+            <div>
+                {t('AppIntro')}
+            </div>
+
+            <div>
+                {t('AppDescription')}
+            </div>
+
+            <div>
+                {t('WhyUseSmartCellar')}
+            </div>
+
+            <div>
+                {t('FoodWasteIssue')}
+            </div>
+
+            <div>
+                {t('WhatSmartCellarOffers')}
+            </div>
+
+            <div>
+                {t('TrackExpiryDates')}
+            </div>
+
+            <div>
+                {t('PlanYourShopping')}
+            </div>
+            <div>
+                {t('ReduceCarbonFootprint')}
+            </div>
+
+            <div>
+                {t('AccessibilityAndFree')}
+            </div>
+            <div>
+                {t('OpenSource')}
+            </div>
+            <div>
+                {t('JoinUsToday')}
+            </div>
         </div>
     );
 };

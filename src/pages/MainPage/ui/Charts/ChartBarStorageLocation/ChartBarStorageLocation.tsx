@@ -28,7 +28,7 @@ export const ChartBarStorageLocation = memo((props: ChartBarStorageLocationProps
     return (
         <div className={classNames('ChartBarStorageLocation', {}, [className])}>
             <BarChart
-                width={1100}
+                width={1280}
                 height={400}
                 data={seriesData}
             >

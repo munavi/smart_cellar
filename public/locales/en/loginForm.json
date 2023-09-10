@@ -1,7 +1,7 @@
 {
   "Authorisation form": "Authorisation form",
-  "You entered an incorrect username or password": "You entered an incorrect username or password",
-  "Input username": "Input username",
-  "Input password": "Input password",
+  "You entered an incorrect username or password": "You entered an incorrect email or password",
+  "Input username": "Email",
+  "Input password": "Password",
   "Login": "Login"
 }
