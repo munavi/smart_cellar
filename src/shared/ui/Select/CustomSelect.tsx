@@ -3,8 +3,8 @@ import React, { ChangeEvent, memo, useMemo } from 'react';
 import {
     FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
-import cls from './Select.module.scss';
 import { useTranslation } from 'react-i18next';
+import cls from './Select.module.scss';
 
 export interface SelectOption {
     value: number;
@@ -50,14 +50,14 @@ export const CustomSelect = memo((props: SelectProps) => {
     const mods: Mods = {};
 
     return (
-
         <div className={classNames(cls.Wrapper, mods, [className])}>
-            <FormControl fullWidth sx={{ minWidth: 200 }}>
-                <InputLabel id="demo-simple-select-helper-label">{label}</InputLabel>
+            <FormControl variant="outlined" fullWidth sx={{ minWidth: 200 }}>
+                <InputLabel id="select-label">{label}</InputLabel>
                 <Select
-                    labelId="demo-simple-select-helper-label"
-                    id="demo-simple-select-helper"
+                    labelId="select-label"
+                    id="simple-select"
                     disabled={readonly}
+                    label={label}
                     defaultValue={zeroElement ? selectedValue : undefined}
                     value={zeroElement ? undefined : selectedValue}
                     onChange={onChangeHandler}
