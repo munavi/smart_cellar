@@ -1,15 +1,15 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, {
+    ChangeEvent,
     memo, useCallback, useEffect, useState,
 } from 'react';
 import {
-    Fab, ListItem, Button, Snackbar,
+    Button, Fab, ListItem, Snackbar, TextField,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Input } from 'shared/ui/Input/Input';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { StorageLocation, StorageLocationSelect } from 'entities/StorageLocation';
 import { Category, CategorySelect } from 'entities/Category';
@@ -18,7 +18,6 @@ import { getAddNewProductData } from 'features/addNewProduct/model/selectors/new
 import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
 import { addNewProduct } from 'features/addNewProduct/model/services/addNewProduct/addNewProduct';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import cls from './AddNewProduct.module.scss';
 
 export interface AddNewProductProps {
@@ -59,11 +58,13 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
         setDateValid(isDateEntered);
     }, [newProductData]);
 
-    const onChangeItemName = useCallback((name?: string) => {
+    const onChangeItemName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.value;
         dispatch(addNewProductActions.updateNewProduct({ name }));
     }, [dispatch]);
 
-    const onChangeItemQuantity = useCallback((quantity: string) => {
+    const onChangeItemQuantity = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const quantity = event.target.value;
         const parsedQuantity = parseInt(quantity || '', 10);
         dispatch(addNewProductActions.updateNewProduct(
             { quantity: Number.isNaN(parsedQuantity) ? undefined : parsedQuantity.toString() },
@@ -88,7 +89,6 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
         setSnackbarOpen(true);
     };
 
-    // Функция для закрытия Snackbar уведомления.
     const closeSnackbar = () => {
         setSnackbarOpen(false);
     };
@@ -100,7 +100,6 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
             dispatch(addNewProductActions.cancelEdit());
             openSnackbar();
         } else {
-            // Вывод сообщения об ошибке
             console.error('Please enter all required data before saving.');
         }
     }, [dispatch, onCloseModal, isSaveButtonEnabled]);
@@ -121,30 +120,15 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                 isOpen={isModal}
                 onClose={onCloseModal}
             >
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item name')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item name')}
+                <TextField
+                    label={t('Item name')}
                     onChange={onChangeItemName}
                     value={newProductData?.name || ''}
                 />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item Quantity')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item Quantity')}
+                <TextField
+                    label={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={newProductData?.quantity || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Change a date')}
-                    align={TextAlign.CENTER}
                 />
                 <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
                 <StorageLocationSelect

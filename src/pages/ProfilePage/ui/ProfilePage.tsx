@@ -15,7 +15,7 @@ import {
     profileReducer,
     ValidateProfileError,
 } from 'entities/Profile';
-import { useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
@@ -51,11 +51,13 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         dispatch(fetchProfileData());
     });
 
-    const onChangeFirstname = useCallback((value?: string) => {
+    const onChangeFirstname = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
         dispatch(profileActions.updateProfile({ firstname: value || '' }));
     }, [dispatch]);
 
-    const onChangeLastname = useCallback((value?: string) => {
+    const onChangeLastname = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
         dispatch(profileActions.updateProfile({ lastname: value || '' }));
     }, [dispatch]);
 

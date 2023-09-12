@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
+import React, { ChangeEvent, memo, useCallback } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
 import { Input } from 'shared/ui/Input/Input';
@@ -20,6 +20,7 @@ import { getCategories } from 'entities/Category/model/selectors/getCategories/g
 import {
     getStorageLocations,
 } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
+import { TextField } from '@mui/material';
 import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
@@ -39,7 +40,8 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
 
     const categories = useSelector(getCategories);
     const storageLocations = useSelector(getStorageLocations);
-    const onChangeItemName = useCallback((name: string) => {
+    const onChangeItemName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.value;
         dispatch(productDetailsActions.editProduct({
             updatedData: {
                 name,
@@ -47,7 +49,8 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
         }));
     }, [dispatch]);
 
-    const onChangeItemQuantity = useCallback((quantity: string) => {
+    const onChangeItemQuantity = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const quantity = event.target.value;
         const parsedQuantity = parseInt(quantity, 10);
 
         dispatch(productDetailsActions.editProduct({
@@ -107,30 +110,15 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                 onClose={onClose}
             >
                 {' '}
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item name')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item name')}
+                <TextField
+                    label={t('Item name')}
                     onChange={onChangeItemName}
                     value={productForm?.name || ''}
                 />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item Quantity')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item Quantity')}
+                <TextField
+                    label={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={productForm?.quantity || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('change a date')}
-                    align={TextAlign.CENTER}
                 />
                 <DatePicker onChange={onChangeDate} value={productForm?.date || ''} />
                 <StorageLocationSelect
@@ -148,12 +136,12 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     theme={ButtonTheme.OUTLINE_RED}
                     onClick={onCancel}
                 >
-                    {t("Cancel")}
+                    {t('Cancel')}
                 </Button>
                 <Button
                     onClick={onSave}
                 >
-                    {t("Save")}
+                    {t('Save')}
                 </Button>
 
             </Modal>
