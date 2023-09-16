@@ -143,20 +143,20 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                 />
                 <Button
                     size="small"
-                    color="error"
-                    variant="outlined"
-                    onClick={onCancel}
-                >
-                    {t('Cancel')}
-                </Button>
-                <Button
-                    size="small"
                     color="primary"
                     variant="outlined"
                     onClick={onSave}
                     disabled={!isSaveButtonEnabled}
                 >
                     {t('Save')}
+                </Button>
+                <Button
+                    size="small"
+                    color="error"
+                    variant="outlined"
+                    onClick={onCancel}
+                >
+                    {t('Cancel')}
                 </Button>
             </Modal>
             <Snackbar

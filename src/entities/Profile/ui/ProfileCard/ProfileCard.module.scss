@@ -1,10 +1,19 @@
 .ProfileCard {
     padding: 20px;
     border: 2px solid var(--inverted-bg-color);
+    border-radius: 10px;
+    max-width: 65%;
+    margin: 0 auto;
 }
 
 .input {
     margin-top: 10px;
+}
+
+.data{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .loading,

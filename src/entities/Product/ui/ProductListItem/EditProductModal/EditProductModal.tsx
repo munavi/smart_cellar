@@ -2,12 +2,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, { ChangeEvent, memo, useCallback } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Input } from 'shared/ui/Input/Input';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { StorageLocationSelect } from 'entities/StorageLocation';
 import { CategorySelect } from 'entities/Category';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import { Product } from 'entities/Product';
@@ -20,7 +17,7 @@ import { getCategories } from 'entities/Category/model/selectors/getCategories/g
 import {
     getStorageLocations,
 } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
-import { TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
@@ -132,18 +129,21 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     onChange={onChangeCategory}
                 />
                 <Button
-                    className={cls.editBtn}
-                    theme={ButtonTheme.OUTLINE_RED}
-                    onClick={onCancel}
-                >
-                    {t('Cancel')}
-                </Button>
-                <Button
+                    size="small"
+                    color="primary"
+                    variant="outlined"
                     onClick={onSave}
                 >
                     {t('Save')}
                 </Button>
-
+                <Button
+                    size="small"
+                    color="error"
+                    variant="outlined"
+                    onClick={onCancel}
+                >
+                    {t('Cancel')}
+                </Button>
             </Modal>
         </div>
     );
