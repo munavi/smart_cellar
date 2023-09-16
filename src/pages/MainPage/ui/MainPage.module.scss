@@ -1,16 +1,16 @@
 .MainPage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 
-  .OverviewCardContainer,
-  .ChartContainer {
-    margin: 0.2rem;
-  }
+    .OverviewCardContainer,
+    .ChartContainer {
+        margin: 0.2rem;
+    }
 
-  .ScaledChart {
-    transform: scale(0.85);
-  }
+    .ScaledChart {
+        transform: scale(0.85);
+    }
 }

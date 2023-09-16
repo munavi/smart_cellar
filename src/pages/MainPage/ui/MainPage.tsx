@@ -51,9 +51,6 @@ const MainPage = ({ className }: MainPageProps) => {
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames(cls.MainPage, {}, [className])}>
-                <div>
-                    {t('Main page')}
-                </div>
                 <div className={cls.OverviewCardContainer}>
                     <Grid
                         container

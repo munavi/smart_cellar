@@ -48,7 +48,7 @@ module.exports = {
                 markupOnly: true,
                 ignoreAttribute: ['data-testid', 'to', 'size',
                     'color', 'variant', 'direction', 'justifyContent', 'spacing', 'alignItems',
-                    'aria-label', 'adapterLocale'],
+                    'aria-label', 'adapterLocale', 'labelId', 'dataKey', 'fill', 'key', 'content'],
             },
         ],
         'max-len': ['error', { ignoreComments: true, code: 100 }],
@@ -60,6 +60,7 @@ module.exports = {
         'no-param-reassign': 'off',
         'no-undef': 'off',
         'eslint-disable-next-line i18next/no-literal-string': 'off',
+        'react/no-array-index-key': 'off',
     },
     globals: {
         __IS_DEV__: true,

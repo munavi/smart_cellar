@@ -18,7 +18,6 @@ import {
     getStorageLocations,
 } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
 import { Button, TextField } from '@mui/material';
-import cls from './EditProductModal.module.scss';
 
 interface EditProductModalProps {
     isOpen: boolean;
@@ -101,7 +100,7 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
     }, [onClose]);
 
     return (
-        <div className={classNames(cls.EditProductModal, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}

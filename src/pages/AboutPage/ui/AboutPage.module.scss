@@ -1,39 +1,40 @@
 .AboutPage {
-  font-family: var(--font-family-main);
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+    font-family: var(--font-family-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
-  .section {
+
+.section {
     margin-bottom: 40px; /* Увеличиваем отступы между секциями */
     padding: 20px; /* Увеличиваем внутренний отступ секций */
     background-color: var(--bg-color);
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
     width: 60%; /* Устанавливаем ширину секций в 60% от видимой ширины окна */
     max-height: 100%; /* Ограничиваем высоту секций максимально видимой высотой окна */
 
     h2 {
-      font-size: var(--font-size-m);
-      padding-bottom: 10px;
-      padding-top: 10px;
-      border-bottom: 1px solid #ccc;
+        font-size: var(--font-size-m);
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-bottom: 1px solid #ccc;
     }
 
     p {
-      font-size: var(--font-size-m);
-      line-height: var(--font-line-m);
-      margin-top: 10px;
+        font-size: var(--font-size-m);
+        line-height: var(--font-line-m);
+        margin-top: 10px;
     }
 
-    h3{
-      font-size: var(--font-size-m);
-      line-height: var(--font-line-m);
-      font-style: italic;
-      font-weight: normal;
+    h3 {
+        font-size: var(--font-size-m);
+        line-height: var(--font-line-m);
+        font-style: italic;
+        font-weight: normal;
     }
-  }
+}

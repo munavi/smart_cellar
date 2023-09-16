@@ -1,10 +1,9 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import React, { ChangeEvent, memo, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import {
-    FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent,
+    FormControl, InputLabel, MenuItem, Select, SelectChangeEvent,
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import cls from './Select.module.scss';
 
 export interface SelectOption {
     value: number;
@@ -50,7 +49,7 @@ export const CustomSelect = memo((props: SelectProps) => {
     const mods: Mods = {};
 
     return (
-        <div className={classNames(cls.Wrapper, mods, [className])}>
+        <div className={classNames('', mods, [className])}>
             <FormControl variant="outlined" fullWidth sx={{ minWidth: 200 }}>
                 <InputLabel id="select-label">{label}</InputLabel>
                 <Select

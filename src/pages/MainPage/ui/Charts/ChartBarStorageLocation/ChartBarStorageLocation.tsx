@@ -4,7 +4,6 @@ import {
 } from 'recharts';
 import classNames from 'classnames';
 import { ProductStat } from 'entities/ProductStat';
-import './ChartBarStorageLocation.module.scss';
 import { useTranslation } from 'react-i18next';
 
 interface ChartBarStorageLocationProps {
@@ -26,7 +25,7 @@ export const ChartBarStorageLocation = memo((props: ChartBarStorageLocationProps
     })) || [];
 
     return (
-        <div className={classNames('ChartBarStorageLocation', {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <BarChart
                 width={1280}
                 height={400}

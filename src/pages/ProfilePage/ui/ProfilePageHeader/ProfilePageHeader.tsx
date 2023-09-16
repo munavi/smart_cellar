@@ -36,7 +36,7 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 
     return (
         <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-            <Text title={t('Profile')} />
+            <h2>{t('Profile')}</h2>
             {readonly
                 ? (
                     <Button
