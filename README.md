@@ -1,6 +1,6 @@
 # Smart Cellar Frontend
 
-This code is an essential component of the bachelor's project on the topic "Smart Cellar: Development of a Full-Stack App for Reducing Food Waste and Promoting a Sustainable and Cost-Effective Lifestyle."
+This code is an essential component of the bachelor's project on the topic "Smart Cellar: development of a full-stack app for reducing food waste and promoting a sustainable and cost-effective lifestyle".
 
 
 ## Requirements
@@ -24,7 +24,7 @@ if the server is located `http://localhost:4000` by default, it is started with 
 ```bash
 npm run start
 ```
-If you don't have a running server, you can use the deployed server (it is available on the render.com server until 29.12.23),
+If you don't have a running server, you can use the deployed server (it is available on the render.com server until 09.11.23),
 you can start the project by the command:
 ```bash
 npm run start:render
