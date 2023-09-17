@@ -3,8 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-
+}
     .OverviewCardContainer,
     .ChartContainer {
         margin: 0.2rem;
@@ -13,4 +12,9 @@
     .ScaledChart {
         transform: scale(0.85);
     }
-}
+
+    .OverviewCardContainer{
+        display: flex;
+        flex-direction: row;
+    }
+
