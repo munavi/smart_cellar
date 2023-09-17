@@ -13,3 +13,5 @@ RUN npm install
 # Starting the application in development mode
 CMD ["sh", "-c", "npm run start"]
 
+
+
