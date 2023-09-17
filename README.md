@@ -17,21 +17,23 @@ Use the package manager [npm](https://docs.npmjs.com/downloading-and-installing-
 ```bash
 npm install
 ```
-## Environment Variables
-
-Before starting the project, you must configure the environment variables. Create a .env file in the project's root directory and define the following variables:
-```bash
-SERVER=http://localhost:3000
-apiUrl=http://localhost:4000
-```
-Make sure to update the `apiUrl` with the address where your backend is running.
 
 ## Usage
-To run the project, please use the following command:
-
+Depending on where the backend server is located, the project can be started locally in different ways.
+if the server is located `http://localhost:4000` by default, it is started with the following command:
 ```bash
 npm run start
 ```
+If you don't have a running server, you can use the deployed server (it is available on the render.com server until 29.12.23),
+you can start the project by the command:
+```bash
+npm run start:render
+```
+If the backend server is at a different address, the following command is used:
+```bash
+npm run start apiUrl='http://yourBackendAdress.com'
+```
+
 To log in, use the following credentials:
 ```bash
 Email   :  user1@example.com

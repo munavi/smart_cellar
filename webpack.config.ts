@@ -1,7 +1,18 @@
 import webpack from 'webpack';
 import path from 'path';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
-import { BuildEnv, BuildPaths } from './config/build/types/config';
+import { BuildEnv, BuildMode, BuildPaths } from './config/build/types/config';
+
+function getApiUrl(mode: BuildMode, apiUrl?: string) {
+    if (apiUrl) {
+        return apiUrl;
+    }
+    if (mode === 'production') {
+        return '/api';
+    }
+
+    return 'http://localhost:4000';
+}
 
 export default (env: BuildEnv) => {
     const paths: BuildPaths = {
@@ -13,11 +24,10 @@ export default (env: BuildEnv) => {
         buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
-    const mode = env.mode || 'development';
-    const PORT = env.port || 3000;
+    const mode = env?.mode || 'development';
+    const PORT = env?.port || 3000;
     const isDev = mode === 'development';
-    const apiUrl = env.apiUrl || 'https://smart-cellar-backend-db.onrender.com';
-    // const reactAppApiUrl = env.reactAppApiUrl || 'https://smart-cellar-backend-db.onrender.com';
+    const apiUrl = getApiUrl(mode, env?.apiUrl);
 
     const config: webpack.Configuration = buildWebpackConfig({
         mode,
@@ -30,5 +40,3 @@ export default (env: BuildEnv) => {
 
     return config;
 };
-
-// reactAppApiUrl,
