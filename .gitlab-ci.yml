@@ -4,13 +4,13 @@ stages:
   - Test
   - Deploy
 
-#test_project_unit:
-#  stage: Test
-#  image: node:17.4.0
-#  script:
-#    - echo "Installing dependencies..."
-#    - npm ci
-#    - npm run test:unit
+test_project_unit:
+  stage: Test
+  image: node:17.4.0
+  script:
+    - echo "Installing dependencies..."
+    - npm ci
+    - npm run test:unit
 
 #test_screenshot_storybook:
 #  stage: Test
