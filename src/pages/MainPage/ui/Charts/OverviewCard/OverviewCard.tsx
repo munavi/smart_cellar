@@ -6,7 +6,6 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import {
     Avatar, Card, CardContent, Stack, SvgIcon, Typography,
 } from '@mui/material';
-import cls from './OverviewCard.module.scss';
 
 interface OverviewCardProps {
     className?: string;
@@ -22,7 +21,7 @@ export const OverviewCard = memo((props: OverviewCardProps) => {
     } = props;
 
     return (
-        <div className={classNames(cls.OverviewCard, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <Card sx={sx}>
                 <CardContent>
                     <Stack
@@ -32,7 +31,7 @@ export const OverviewCard = memo((props: OverviewCardProps) => {
                         spacing={3}
                     >
                         <Stack spacing={1}>
-                            <Typography color="text.secondary" variant="overline">
+                            <Typography color="text.primary" variant="overline">
                                 {label}
                             </Typography>
                             <Typography variant="h4">{value}</Typography>

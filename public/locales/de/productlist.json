@@ -1,10 +1,11 @@
 {
   "Search by name": "Suche nach Name",
-  "Choose a category": "Wähle eine Kategorie",
-  "Choose a storage location": "Wählen Sie einen Lagerort",
-  "Item name": "Artikelname",
+  "Choose a category": "Wählen Sie eine Kategorie aus",
+  "Choose a storage location": "Wählen Sie einen Lagerort aus",
+  "Item name": "Artikelbezeichnung",
   "Item Quantity": "Artikel Menge",
   "Cancel": "Abbrechen",
   "Save": "Speichern",
-  "Change a date": "Datum ändern"
+  "Change a date": "Datum ändern",
+  "Product added successfully": "Produkt wurde erfolgreich hinzugefügt"
 }

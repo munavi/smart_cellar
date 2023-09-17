@@ -30,7 +30,7 @@ export const ChartPieCategory = memo((props: ChartPieCategoryProps) => {
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
-        <div className={classNames('ChartPieCategory', {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <PieChart width={1000} height={400}>
                 <Pie
                     data={seriesData}

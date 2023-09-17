@@ -1,15 +1,18 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
-import { Fab, ListItem } from '@mui/material';
+import React, {
+    ChangeEvent,
+    memo, useCallback, useEffect, useState,
+} from 'react';
+import {
+    Button, Fab, ListItem, Snackbar, TextField,
+} from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Input } from 'shared/ui/Input/Input';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { StorageLocation, StorageLocationSelect } from 'entities/StorageLocation';
 import { Category, CategorySelect } from 'entities/Category';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
 import { getAddNewProductData } from 'features/addNewProduct/model/selectors/newProductSelectors';
 import { addNewProductActions } from 'features/addNewProduct/model/slices/newProductSlice';
@@ -40,17 +43,39 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
     const dispatch = useAppDispatch();
     const newProductData = useSelector(getAddNewProductData);
 
-    const onChangeItemName = useCallback((name?: string) => {
+    const [isNameValid, setNameValid] = useState(true);
+    const [isQuantityValid, setQuantityValid] = useState(true);
+    const [isDateValid, setDateValid] = useState(true);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    useEffect(() => {
+        const isNameEntered = !!newProductData?.name?.trim();
+        const isQuantityEntered = !!newProductData?.quantity?.trim();
+        const isDateEntered = !!newProductData?.date?.trim();
+
+        setNameValid(isNameEntered);
+        setQuantityValid(isQuantityEntered);
+        setDateValid(isDateEntered);
+    }, [newProductData]);
+
+    const onChangeItemName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.value;
         dispatch(addNewProductActions.updateNewProduct({ name }));
     }, [dispatch]);
 
-    const onChangeItemQuantity = useCallback((quantity?: string) => {
-        dispatch(addNewProductActions.updateNewProduct({ quantity }));
+    const onChangeItemQuantity = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const quantity = event.target.value;
+        const parsedQuantity = parseInt(quantity || '', 10);
+        dispatch(addNewProductActions.updateNewProduct(
+            { quantity: Number.isNaN(parsedQuantity) ? undefined : parsedQuantity.toString() },
+        ));
     }, [dispatch]);
 
-    const onChangeDate = useCallback((date: string) => {
-        dispatch(addNewProductActions.updateNewProduct({ date }));
+    const onChangeDate = useCallback((dateString: string) => {
+        dispatch(addNewProductActions.updateNewProduct({ date: dateString }));
     }, [dispatch]);
+
+    const isSaveButtonEnabled = isNameValid && isQuantityValid && isDateValid;
 
     const onChangeCategory = useCallback((categoryId: number) => {
         dispatch(addNewProductActions.updateNewProduct({ categoryId }));
@@ -60,11 +85,24 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
         dispatch(addNewProductActions.updateNewProduct({ storageLocationId }));
     }, [dispatch]);
 
+    const openSnackbar = () => {
+        setSnackbarOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setSnackbarOpen(false);
+    };
+
     const onSave = useCallback(() => {
-        dispatch(addNewProduct());
-        onCloseModal();
-        dispatch(addNewProductActions.cancelEdit());
-    }, [dispatch, onCloseModal]);
+        if (isSaveButtonEnabled) {
+            dispatch(addNewProduct());
+            onCloseModal();
+            dispatch(addNewProductActions.cancelEdit());
+            openSnackbar();
+        } else {
+            console.error('Please enter all required data before saving.');
+        }
+    }, [dispatch, onCloseModal, isSaveButtonEnabled]);
 
     const onCancel = useCallback(() => {
         dispatch(addNewProductActions.cancelEdit());
@@ -82,31 +120,15 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                 isOpen={isModal}
                 onClose={onCloseModal}
             >
-                {' '}
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item name')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item name')}
+                <TextField
+                    label={t('Item name')}
                     onChange={onChangeItemName}
                     value={newProductData?.name || ''}
                 />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item Quantity')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item Quantity')}
+                <TextField
+                    label={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={newProductData?.quantity || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Change a date')}
-                    align={TextAlign.CENTER}
                 />
                 <DatePicker onChange={onChangeDate} value={newProductData?.date || ''} />
                 <StorageLocationSelect
@@ -120,20 +142,29 @@ const AddNewProduct = memo((props: AddNewProductProps) => {
                     categories={categories || []}
                 />
                 <Button
-                    className={cls.editBtn}
-                    theme={ButtonTheme.OUTLINE_RED}
-                    onClick={onCancel}
+                    size="small"
+                    color="primary"
+                    variant="outlined"
+                    onClick={onSave}
+                    disabled={!isSaveButtonEnabled}
                 >
-                    {t("Cancel")}
+                    {t('Save')}
                 </Button>
                 <Button
-                    onClick={onSave}
+                    size="small"
+                    color="error"
+                    variant="outlined"
+                    onClick={onCancel}
                 >
-                    {t("Save")}
+                    {t('Cancel')}
                 </Button>
-
             </Modal>
-
+            <Snackbar
+                open={snackbarOpen}
+                autoHideDuration={6000}
+                onClose={closeSnackbar}
+                message={t('Product added successfully')}
+            />
         </div>
     );
 });

@@ -1,13 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
 import { useSelector } from 'react-redux';
-import React, { memo, useCallback } from 'react';
+import React, { ChangeEvent, memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoader, ReducersList } from
     'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button, TextField } from '@mui/material';
 import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -33,11 +33,13 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-    const onChangeEmail = useCallback((value: string) => {
+    const onChangeEmail = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
         dispatch(loginActions.setEmail(value));
     }, [dispatch]);
 
-    const onChangePassword = useCallback((value: string) => {
+    const onChangePassword = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
@@ -67,15 +69,15 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                         theme={TextTheme.ERROR}
                     />
                 )}
-                <Input
-                    autofocus
+                <TextField
+                    autoFocus
                     type="text"
                     className={cls.input}
                     placeholder={t('Input username')}
                     onChange={onChangeEmail}
                     value={email}
                 />
-                <Input
+                <TextField
                     type="password"
                     className={cls.input}
                     placeholder={t('Input password')}
@@ -84,7 +86,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
                     onKeyDown={handleKeyDown}
                 />
                 <Button
-                    theme={ButtonTheme.OUTLINE}
+                    size="small"
+                    color="primary"
+                    variant="outlined"
                     className={cls.loginBtn}
                     onClick={onLoginClick}
                     disabled={isLoading}
