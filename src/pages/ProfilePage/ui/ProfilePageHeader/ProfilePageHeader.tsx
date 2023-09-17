@@ -1,17 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text } from 'shared/ui/Text/Text';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import {
-    fetchProfileData,
-    getProfileForm,
-    getProfileReadonly,
-    profileActions,
-    updateProfileData,
-} from 'entities/Profile';
-import { useCallback, useEffect } from 'react';
+import { getProfileReadonly, profileActions, updateProfileData } from 'entities/Profile';
+import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button } from '@mui/material';
 import cls from './ProfilePageHeader.module.scss';
 
 interface ProfilePageHeaderProps {
@@ -42,12 +36,14 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 
     return (
         <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
-            <Text title={t('Profile')} />
+            <h2>{t('Profile')}</h2>
             {readonly
                 ? (
                     <Button
                         className={cls.editBtn}
-                        theme={ButtonTheme.OUTLINE}
+                        size="small"
+                        color="primary"
+                        variant="outlined"
                         onClick={onEdit}
                     >
                         {t('Edit')}
@@ -56,15 +52,19 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
                 : (
                     <>
                         <Button
+                            size="small"
+                            color="error"
+                            variant="outlined"
                             className={cls.editBtn}
-                            theme={ButtonTheme.OUTLINE_RED}
                             onClick={onCancelEdit}
                         >
                             {t('Cancel')}
                         </Button>
                         <Button
+                            size="small"
+                            color="primary"
+                            variant="outlined"
                             className={cls.saveBtn}
-                            theme={ButtonTheme.OUTLINE}
                             onClick={onSave}
                         >
                             {t('Save')}

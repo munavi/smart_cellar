@@ -1,10 +1,11 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Input } from 'shared/ui/Input/Input';
 import { CurrencySelect } from 'entities/Currency';
 import { CountrySelect } from 'entities/Country';
 import { Loader } from 'shared/ui/Loader/Loader';
+import { TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
 import cls from './ProfileCard.module.scss';
 import { Profile } from '../../model/types/profile';
 
@@ -14,8 +15,8 @@ interface ProfileCardProps {
     error?: string;
     isLoading?: boolean;
     readonly?: boolean;
-    onChangeLastname?: (value?: string) => void;
-    onChangeFirstname?: (value?: string) => void;
+    onChangeLastname?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChangeFirstname?: (event: ChangeEvent<HTMLInputElement>) => void;
     onChangeCurrency?: (currency: number) => void;
     onChangeCountry?: (country: number) => void;
 }
@@ -67,19 +68,19 @@ export const ProfileCard = (props: ProfileCardProps) => {
     return (
         <div className={classNames(cls.ProfileCard, mods, [className])}>
             <div className={cls.data}>
-                <Input
+                <TextField
                     value={data?.firstname}
-                    placeholder={t('Your firstname')}
+                    label={t('Your firstname')}
                     className={cls.input}
                     onChange={onChangeFirstname}
-                    readonly={readonly}
+                    disabled={readonly}
                 />
-                <Input
+                <TextField
                     value={data?.lastname}
-                    placeholder={t('Your lastname')}
+                    label={t('Your lastname')}
                     className={cls.input}
                     onChange={onChangeLastname}
-                    readonly={readonly}
+                    disabled={readonly}
                 />
                 <CurrencySelect
                     className={cls.input}

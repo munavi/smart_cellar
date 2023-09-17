@@ -4,7 +4,6 @@ import { getCategories } from 'entities/Category/model/selectors/getCategories/g
 import { useSelector } from 'react-redux';
 import { getStorageLocations }
     from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
-import cls from './IdConverter.module.scss';
 
 interface IdConverterProps {
     className?: string,
@@ -37,7 +36,7 @@ export const IdConverter = (props: IdConverterProps) => {
 
     return (
 
-        <div className={classNames(cls.IdConverter, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             {t(name)}
         </div>
 

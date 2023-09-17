@@ -2,7 +2,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import React, { memo, useState } from 'react';
 import { TextField } from '@mui/material';
-import cls from './FilterBarName.module.scss';
 
 interface FilterBarProps {
     className?: string,
@@ -22,7 +21,7 @@ export const FilterBarName = memo((props: FilterBarProps) => {
     };
 
     return (
-        <div className={classNames(cls.FilterBar, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <TextField
                 id="outlined-basic"
                 label={t('Search by name')}

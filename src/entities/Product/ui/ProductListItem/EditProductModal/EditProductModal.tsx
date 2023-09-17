@@ -1,13 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React, { memo, useCallback } from 'react';
+import React, { ChangeEvent, memo, useCallback } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text';
-import { Input } from 'shared/ui/Input/Input';
 import { DatePicker } from 'shared/ui/DatePicker/DatePicker';
 import { StorageLocationSelect } from 'entities/StorageLocation';
 import { CategorySelect } from 'entities/Category';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { productDetailsActions } from 'entities/Product/model/slice/productDetailsSlice';
 import { Product } from 'entities/Product';
@@ -20,7 +17,7 @@ import { getCategories } from 'entities/Category/model/selectors/getCategories/g
 import {
     getStorageLocations,
 } from 'entities/StorageLocation/model/selectors/getStorageLocations/getStorageLocations';
-import cls from './EditProductModal.module.scss';
+import { Button, TextField } from '@mui/material';
 
 interface EditProductModalProps {
     isOpen: boolean;
@@ -39,7 +36,8 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
 
     const categories = useSelector(getCategories);
     const storageLocations = useSelector(getStorageLocations);
-    const onChangeItemName = useCallback((name: string) => {
+    const onChangeItemName = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const name = event.target.value;
         dispatch(productDetailsActions.editProduct({
             updatedData: {
                 name,
@@ -47,7 +45,8 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
         }));
     }, [dispatch]);
 
-    const onChangeItemQuantity = useCallback((quantity: string) => {
+    const onChangeItemQuantity = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+        const quantity = event.target.value;
         const parsedQuantity = parseInt(quantity, 10);
 
         dispatch(productDetailsActions.editProduct({
@@ -101,36 +100,21 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
     }, [onClose]);
 
     return (
-        <div className={classNames(cls.EditProductModal, {}, [className])}>
+        <div className={classNames('', {}, [className])}>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
             >
                 {' '}
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item name')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item name')}
+                <TextField
+                    label={t('Item name')}
                     onChange={onChangeItemName}
                     value={productForm?.name || ''}
                 />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('Item Quantity')}
-                    align={TextAlign.CENTER}
-                />
-                <Input
-                    placeholder={t('Item Quantity')}
+                <TextField
+                    label={t('Item Quantity')}
                     onChange={onChangeItemQuantity}
                     value={productForm?.quantity || ''}
-                />
-                <Text
-                    theme={TextTheme.PRIMARY}
-                    title={t('change a date')}
-                    align={TextAlign.CENTER}
                 />
                 <DatePicker onChange={onChangeDate} value={productForm?.date || ''} />
                 <StorageLocationSelect
@@ -144,18 +128,21 @@ export const EditProductModal = memo((props: EditProductModalProps) => {
                     onChange={onChangeCategory}
                 />
                 <Button
-                    className={cls.editBtn}
-                    theme={ButtonTheme.OUTLINE_RED}
-                    onClick={onCancel}
-                >
-                    {t("Cancel")}
-                </Button>
-                <Button
+                    size="small"
+                    color="primary"
+                    variant="outlined"
                     onClick={onSave}
                 >
-                    {t("Save")}
+                    {t('Save')}
                 </Button>
-
+                <Button
+                    size="small"
+                    color="error"
+                    variant="outlined"
+                    onClick={onCancel}
+                >
+                    {t('Cancel')}
+                </Button>
             </Modal>
         </div>
     );
