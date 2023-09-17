@@ -4,17 +4,17 @@
     justify-content: center;
     align-items: center;
 }
-    .OverviewCardContainer,
-    .ChartContainer {
-        margin: 0.2rem;
-    }
 
-    .ScaledChart {
-        transform: scale(0.85);
-    }
+.OverviewCardContainer,
+.ChartContainer {
+    margin: 0.2rem;
+}
 
-    .OverviewCardContainer{
-        display: flex;
-        flex-direction: row;
-    }
+.ScaledChart {
+    transform: scale(0.85);
+}
 
+.OverviewCardContainer {
+    display: flex;
+    flex-direction: row;
+}
