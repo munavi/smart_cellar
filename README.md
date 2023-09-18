@@ -41,11 +41,19 @@ Password:  password1
 ```
 
 ## Usage with Docker
+Install [Docker](https://www.docker.com/get-started/) if you don't have it installed.
 
+Execute the following commands in the command line at the project's root directory:
 ```bash
 docker build -t smart-cellar-frontend .
+```
+```bash
 docker run -d -p 3000:3000 --name frontend-smart-cellar-container smart-cellar-frontend
 ```
+Before launching, ensure that the `smart_cellar_backend_db` instance is also up and running at `http://localhost:4000`.
+
+After successfully executing the commands, open your web browser and navigate to the following link to launch the web application
+[http://localhost:3000](http://localhost:3000)
 
 ## Contributing
 
