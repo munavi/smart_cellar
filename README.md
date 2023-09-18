@@ -35,7 +35,7 @@ Use the package manager [npm](https://docs.npmjs.com/downloading-and-installing-
 ```bash
 npm install
 ```
-### How to launch
+### How to run
 
 Depending on where the backend server is located, the project can be started locally in different ways.
 if the server is located `http://localhost:4000` by default, it is started with the following command:
